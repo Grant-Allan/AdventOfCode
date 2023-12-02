@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Solve problem one, part one of Advent of Code.
+ * Solution to problem one, part one of Advent of Code.
  * https://adventofcode.com/2023/day/1
  *
  * Answer is 55834

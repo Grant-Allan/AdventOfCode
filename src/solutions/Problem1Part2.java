@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Solve problem one, part two of Advent of Code.
+ * Solution to problem one, part two of Advent of Code.
  * https://adventofcode.com/2023/day/1
  *
  * Answer is 53221
