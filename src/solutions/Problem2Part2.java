@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Solution to problem two, part 2 of Advent of Code.
  * https://adventofcode.com/2023/day/2
  *
- * Answer is
+ * Answer is 70387
  */
 public class Problem2Part2 {
     /* The colors used */
