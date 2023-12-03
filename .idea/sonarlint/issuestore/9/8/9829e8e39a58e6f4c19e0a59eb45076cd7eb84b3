@@ -1,0 +1,30 @@
+
+y	java:S116"XRename this field "MAX_RED_CUBES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢…Ğùÿÿÿÿ8çÕ«ÕÂ1
+v	java:S116"ZRename this field "MAX_GREEN_CUBES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï›Ú’8çÕ«ÕÂ1
+u	java:S116"YRename this field "MAX_BLUE_CUBES" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óÕ8çÕ«ÕÂ1
+o	java:S116"NRename this field "RED" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï³”üÿÿÿÿ8çÕ«ÕÂ1
+q	java:S116"PRename this field "GREEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì©«æıÿÿÿÿ8çÕ«ÕÂ1
+p	java:S116"ORename this field "BLUE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÒàêùÿÿÿÿ8çÕ«ÕÂ1
+C
+java:S1170"!Make this final field static too.(¢…Ğùÿÿÿÿ8çÕ«ÕÂ1
+>
+java:S1170"!Make this final field static too.(Ï›Ú’8çÕ«ÕÂ1
+>
+java:S1170"!Make this final field static too.(óÕ8çÕ«ÕÂ1
+C
+java:S1170"!Make this final field static too.(Ï³”üÿÿÿÿ8çÕ«ÕÂ1
+C
+java:S1170"!Make this final field static too.(Ì©«æıÿÿÿÿ8çÕ«ÕÂ1
+C
+java:S1170"!Make this final field static too.(ºÒàêùÿÿÿÿ8çÕ«ÕÂ1
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ª¤Ëúÿÿÿÿ8èÕ«ÕÂ1
+L	java:S106""+Replace this use of System.out by a logger.(ñ—¸½úÿÿÿÿ8ëÕ«ÕÂ1
+G	java:S1060"+Replace this use of System.out by a logger.(Ü´ÿô8íÕ«ÕÂ1
+G	java:S1066"+Replace this use of System.out by a logger.(‹©ò’8îÕ«ÕÂ1
+L	java:S106N"+Replace this use of System.out by a logger.(©‘îùÿÿÿÿ8îÕ«ÕÂ1
+L	java:S106P"+Replace this use of System.out by a logger.(ÎÛ£öüÿÿÿÿ8Øì¬ÕÂ1
+G	java:S106R"+Replace this use of System.out by a logger.(¢ø€—8×³­ÕÂ1
+L	java:S106U"+Replace this use of System.out by a logger.(ŞÒ—üÿÿÿÿ8·‚²ÕÂ1
+G	java:S106Y"+Replace this use of System.out by a logger.(Àûå 8Á³ºÕÂ1
+G	java:S106]"+Replace this use of System.out by a logger.(›²î¾8Ø¸»ÕÂ1

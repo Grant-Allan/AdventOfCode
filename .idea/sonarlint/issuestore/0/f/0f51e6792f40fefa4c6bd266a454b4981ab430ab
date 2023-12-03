@@ -1,0 +1,23 @@
+
+o	java:S116"NRename this field "RED" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï³”üÿÿÿÿ8¥äÍÕÂ1
+q	java:S116"PRename this field "GREEN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì©«æıÿÿÿÿ8¥äÍÕÂ1
+p	java:S116"ORename this field "BLUE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÒàêùÿÿÿÿ8¥äÍÕÂ1
+C
+java:S1170"!Make this final field static too.(Ï³”üÿÿÿÿ8¥äÍÕÂ1
+C
+java:S1170"!Make this final field static too.(Ì©«æıÿÿÿÿ8¥äÍÕÂ1
+C
+java:S1170"!Make this final field static too.(ºÒàêùÿÿÿÿ8¦äÍÕÂ1
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Üƒ´8§äÍÕÂ1
+L	java:S106"+Replace this use of System.out by a logger.(ñ—¸½úÿÿÿÿ8©äÍÕÂ1
+G	java:S106)"+Replace this use of System.out by a logger.(Ü´ÿô8«äÍÕÂ1
+G	java:S106/"+Replace this use of System.out by a logger.(‹©ò’8«äÍÕÂ1
+G	java:S106D"+Replace this use of System.out by a logger.(Õùæµ8¬äÍÕÂ1
+G	java:S106E"+Replace this use of System.out by a logger.(§ĞÁ8„”ÑÕÂ1
+L	java:S106F"+Replace this use of System.out by a logger.(Õˆè™ûÿÿÿÿ8„”ÑÕÂ1
+G	java:S106K"+Replace this use of System.out by a logger.(øÃˆ8„”ÑÕÂ1
+G	java:S106L"+Replace this use of System.out by a logger.(ŞÎ¥¦8„”ÑÕÂ1
+L	java:S106N"+Replace this use of System.out by a logger.(ŞÒ—üÿÿÿÿ8„”ÑÕÂ1
+G	java:S106R"+Replace this use of System.out by a logger.(Àûå 8³ÔÕÂ1
+G	java:S106V"+Replace this use of System.out by a logger.(›²î¾8³ÔÕÂ1

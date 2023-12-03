@@ -9,3 +9,25 @@ P
  src/solutions/Problem1Part1.java,b\3\b3f3c733e633b217e87642ae49b0bff29798eb2c
 P
  src/solutions/Problem1Part2.java,b\a\ba91bd984e7ddc33790f67d7f5a9acaa698355a8
+Å
+Q.idea/sonarlint/securityhotspotstore/a/3/a352e89c96057953fe6fea793fb7bb7b60cf75c1,3\3\33184db4457b62438df39ab569747a7ac032ed5f
+Å
+Q.idea/sonarlint/securityhotspotstore/b/3/b3f3c733e633b217e87642ae49b0bff29798eb2c,5\e\5eca3e4237686a6251761f39001ca632be1ebcda
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+Å
+Q.idea/sonarlint/securityhotspotstore/6/8/680ae1e2e046924c3aa779a9af3ad76e5ac34931,3\1\31742aa828002a4a24aebdadf3a2aa22d225e152
+Å
+Q.idea/sonarlint/securityhotspotstore/f/e/fe03b4fd3afe162c6e01309b98a22588e093d274,d\a\da101d83b6b65667373de548a9f5004071396234
+K
+resources/Problem2Input.txt,d\2\d280e47e358621b1c7373ee41887fff08b49d2c1
+w
+G.idea/sonarlint/issuestore/a/3/a352e89c96057953fe6fea793fb7bb7b60cf75c1,d\f\dfdfca89f1b0d8f8946fc3527888ccbc0927e418
+P
+ src/solutions/Problem2Part1.java,9\8\9829e8e39a58e6f4c19e0a59eb45076cd7eb84b3
+Å
+Q.idea/sonarlint/securityhotspotstore/b/a/ba91bd984e7ddc33790f67d7f5a9acaa698355a8,5\0\50707acde6a937bcd5454799f5a57f80840c1420
+P
+ src/solutions/Problem2Part2.java,0\f\0f51e6792f40fefa4c6bd266a454b4981ab430ab
