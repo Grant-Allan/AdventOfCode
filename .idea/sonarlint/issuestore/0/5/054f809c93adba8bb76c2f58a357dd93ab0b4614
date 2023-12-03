@@ -1,0 +1,24 @@
+
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(åˆÏÉıÿÿÿÿ8Ê¶„…Ã1
+n	java:S116"RRename this field "SYMBOLS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…õİ8ªÚïÿÂ1
+n	java:S116"RRename this field "NUMBERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œïÉä8ªÚïÿÂ1
+l	java:S116"PRename this field "BLOCK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í¼şÂ8ªÚïÿÂ1
+r	java:S116"VRename this field "ALL_NUMBERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¸±Å8ªÚïÿÂ1
+>
+java:S1170"!Make this final field static too.(…õİ8ªÚïÿÂ1
+>
+java:S1170"!Make this final field static too.(œïÉä8ªÚïÿÂ1
+n
+java:S3776$"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ªÂãM8¬ÚïÿÂ1
+G	java:S1066"+Replace this use of System.out by a logger.(ƒŞ‡Á8°ÚïÿÂ1
+G	java:S106;"+Replace this use of System.out by a logger.(úÜÙ·8²ÚïÿÂ1
+G	java:S106I"+Replace this use of System.out by a logger.(úÜÙ·8´ÚïÿÂ1
+G	java:S106R"+Replace this use of System.out by a logger.(ô€Ğµ8ÀÛ€Ã1
+]	java:S125Y"<This block of commented-out lines of code should be removed.(´ïİŞøÿÿÿÿ8°ÚïÿÂ1
+G	java:S106_"+Replace this use of System.out by a logger.(Àûå 8á¨¼„Ã1
+G	java:S106c"+Replace this use of System.out by a logger.(›²î¾8ñÒÀ„Ã1
+H	java:S106†"+Replace this use of System.out by a logger.(ìŞîÂ8¾œÎ„Ã1
+M	java:S106‹"+Replace this use of System.out by a logger.(ˆšÑÖüÿÿÿÿ8„ÇĞ„Ã1
+p
+java:S3776“"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(³¬¸Ş8²ÚïÿÂ1
+H	java:S106½"+Replace this use of System.out by a logger.(éî8™Èì„Ã1

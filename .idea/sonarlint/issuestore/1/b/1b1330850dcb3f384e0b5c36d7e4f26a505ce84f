@@ -1,0 +1,15 @@
+
+n	java:S116"RRename this field "SYMBOLS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…õİ8öÙˆÃ1
+r	java:S116"VRename this field "ALL_NUMBERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¸±Å8öÙˆÃ1
+u	java:S116"YRename this field "USED_LOCATIONS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ¦ü8öÙˆÃ1
+>
+java:S1170"!Make this final field static too.(…õİ8öÙˆÃ1
+G	java:S106<"+Replace this use of System.out by a logger.(¶ú¨Ï8”öÙˆÃ1
+L	java:S106>"+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8”öÙˆÃ1
+G	java:S106J"+Replace this use of System.out by a logger.(Àûå 8•öÙˆÃ1
+L	java:S106N"+Replace this use of System.out by a logger.(Òˆ¼øÿÿÿÿ8•öÙˆÃ1
+t
+java:S3776W"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(×áÆ”ùÿÿÿÿ8Î‰ÛˆÃ1
+H	java:S106‹"+Replace this use of System.out by a logger.(éî8—öÙˆÃ1
+O
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8—öÙˆÃ1

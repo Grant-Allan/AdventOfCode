@@ -76,8 +76,8 @@ public class Problem3Part1_FAIL {
                 }
             }
 
-            // Check the final line (it's one longer than the others
-            for (int i=0; i < (lineLength+1); i++) {
+            // Check the final line
+            for (int i=0; i < lineLength; i++) {
                 if (SYMBOLS.indexOf(BLOCK.get(2).charAt(i)) > -1) {
                     System.out.println("row: " + ROW.LAST + ", index at " + i + ", symbol is " + BLOCK.get(2).charAt(i));
                     numbersCheck(i, ROW.LAST);
