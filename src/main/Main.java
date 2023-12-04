@@ -1,6 +1,6 @@
 package main;
 
-import solutions.Problem3Part2;
+import solutions.Problem4Part2;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +10,8 @@ public class Main {
         //new Problem2Part2();
         //new Problem3Part1_FAIL();
         //new Problem3Part1();
-        new Problem3Part2();
+        //new Problem3Part2();
+        //new Problem4Part1();
+        new Problem4Part2();
     }
 }

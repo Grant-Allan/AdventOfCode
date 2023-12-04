@@ -41,17 +41,27 @@ public class Helper {
      */
     public static String isBlockNumeric(String str) {
         // Check to see if a word string is a number
-        return switch (str) {
-            case ONE -> "1";
-            case TWO -> "2";
-            case THREE -> "3";
-            case FOUR -> "4";
-            case FIVE -> "5";
-            case SIX -> "6";
-            case SEVEN -> "7";
-            case EIGHT -> "8";
-            case NINE -> "9";
-            default -> null;
-        };
+        switch (str) {
+            case ONE:
+                return "1";
+            case TWO:
+                return "2";
+            case THREE:
+                return "3";
+            case FOUR:
+                return "4";
+            case FIVE:
+                return "5";
+            case SIX:
+                return "6";
+            case SEVEN:
+                return "7";
+            case EIGHT:
+                return "8";
+            case NINE:
+                return "9";
+            default:
+                return null;
+        }
     }
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * Solution to problem three, part 1 of Advent of Code.
- * https://adventofcode.com/2023/day/2
+ * https://adventofcode.com/2023/day/3
  *
  * Answer is 525911
  */
@@ -135,7 +135,7 @@ public class Problem3Part1 {
             }
 
             // Add the number to the list of found numbers
-            if (!number.isEmpty()) {
+            if (number.length() != 0) {
                 System.out.print(number + ", ");
                 ALL_NUMBERS.add(number.toString());
             }
