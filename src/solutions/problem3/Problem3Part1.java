@@ -1,4 +1,4 @@
-package solutions;
+package solutions.problem3;
 
 import java.io.File;
 import java.io.FileNotFoundException;

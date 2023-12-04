@@ -1,14 +1,14 @@
 
-p	java:S116"ORename this field "GEAR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò‘â¤úÿÿÿÿ8°³ë§Ã1
-r	java:S116"VRename this field "ALL_NUMBERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¸±Å8°³ë§Ã1
-u	java:S116"YRename this field "USED_LOCATIONS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ¦ü8°³ë§Ã1
+p	java:S116"ORename this field "GEAR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò‘â¤úÿÿÿÿ8Ç¸‰Ã1
+r	java:S116"VRename this field "ALL_NUMBERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¸±Å8Ç¸‰Ã1
+u	java:S116"YRename this field "USED_LOCATIONS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ¦ü8Ç¸‰Ã1
 C
-java:S1170"!Make this final field static too.(ò‘â¤úÿÿÿÿ8°³ë§Ã1
-G	java:S106;"+Replace this use of System.out by a logger.(¶ú¨Ï8¹³ë§Ã1
-L	java:S106="+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8º³ë§Ã1
-G	java:S106I"+Replace this use of System.out by a logger.(Àûå 8»³ë§Ã1
-L	java:S106M"+Replace this use of System.out by a logger.(Òˆ¼øÿÿÿÿ8»³ë§Ã1
+java:S1170"!Make this final field static too.(ò‘â¤úÿÿÿÿ8Ç¸‰Ã1
+G	java:S106;"+Replace this use of System.out by a logger.(¶ú¨Ï8Ë¸‰Ã1
+L	java:S106="+Replace this use of System.out by a logger.(ƒÇãˆúÿÿÿÿ8Ë¸‰Ã1
+G	java:S106I"+Replace this use of System.out by a logger.(Àûå 8Ë¸‰Ã1
+L	java:S106M"+Replace this use of System.out by a logger.(Òˆ¼øÿÿÿÿ8Ë¸‰Ã1
 t
-java:S3776V"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(×áÆ”ùÿÿÿÿ8¼³ë§Ã1
-H	java:S106"+Replace this use of System.out by a logger.(éî8Â³ë§Ã1
-H	java:S106˜"+Replace this use of System.out by a logger.(¿—ô®8Ä³ë§Ã1
+java:S3776V"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(×áÆ”ùÿÿÿÿ8Ë¸‰Ã1
+H	java:S106"+Replace this use of System.out by a logger.(éî8Í¸‰Ã1
+H	java:S106˜"+Replace this use of System.out by a logger.(¿—ô®8Í¸‰Ã1

@@ -1,4 +1,4 @@
-package solutions;
+package solutions.problem4;
 
 import helpers.Helper;
 

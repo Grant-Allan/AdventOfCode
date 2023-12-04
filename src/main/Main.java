@@ -1,16 +1,6 @@
 package main;
 
-import solutions.Problem1Part1;
-import solutions.Problem1Part2;
-import solutions.Problem1Part2_SUPERIOR;
-import solutions.Problem2Part1;
-import solutions.Problem2Part2;
-import solutions.Problem3Part1;
-import solutions.Problem3Part1_MESSY;
-import solutions.Problem3Part2;
-import solutions.Problem4Part1;
-import solutions.Problem4Part2;
-import solutions.Problem4Part2_EFFICIENT;
+import solutions.problem4.Problem4Part2_EFFICIENT;
 
 import java.text.DecimalFormat;
 
@@ -33,7 +23,7 @@ public class Main {
 
         //new Problem4Part1();
         //new Problem4Part2();
-        new Problem4Part2_EFFICIENT();
+        //new Problem4Part2_EFFICIENT();
 
         // Get the time taken for the program to run
         long endTime = System.currentTimeMillis();
