@@ -1,32 +1,52 @@
 package main;
 
+import solutions.Problem1Part1;
+import solutions.Problem1Part2;
+import solutions.Problem1Part2_SUPERIOR;
+import solutions.Problem2Part1;
+import solutions.Problem2Part2;
+import solutions.Problem3Part1;
+import solutions.Problem3Part1_MESSY;
+import solutions.Problem3Part2;
+import solutions.Problem4Part1;
+import solutions.Problem4Part2;
 import solutions.Problem4Part2_EFFICIENT;
 
 import java.text.DecimalFormat;
 
 public class Main {
     public static void main(String[] args) {
+        // Get the time when the programm starts
         long startTime = System.currentTimeMillis();
 
-        try {
-            //new Problem1Part1();
-            //new Problem1Part2();
-            //new Problem2Part1();
-            //new Problem2Part2();
-            //new Problem3Part1_MESSY();
-            //new Problem3Part1();
-            //new Problem3Part2();
-            //new Problem4Part1();
-            //new Problem4Part2();
-            new Problem4Part2_EFFICIENT();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        /* RUN THE PROBLEMS */
+        //new Problem1Part1();
+        //new Problem1Part2();
+        //new Problem1Part2_SUPERIOR();
 
+        //new Problem2Part1();
+        //new Problem2Part2();
+
+        //new Problem3Part1_MESSY();
+        //new Problem3Part1();
+        //new Problem3Part2();
+
+        //new Problem4Part1();
+        //new Problem4Part2();
+        new Problem4Part2_EFFICIENT();
+
+        // Get the time taken for the program to run
         long endTime = System.currentTimeMillis();
         timeToRun(startTime, endTime);
     }
 
+    /**
+     * Calculate the time taken for the program to run in the largest unit
+     * that makes sense, going from milliseconds to days taken.
+     *
+     * @param startTime when the program started
+     * @param endTime when the program ended
+     */
     private static void timeToRun(long startTime, long endTime) {
         // Format for printing the time
         DecimalFormat decimalFormat = new DecimalFormat();
@@ -42,7 +62,7 @@ public class Main {
             unit = " days";
         }
         // Give it in hours
-        if (time >= 3_600_000) {
+        else if (time >= 3_600_000) {
             time /= 3_600_000;
             unit = " hours";
         }
