@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Solution to problem four, part 1 of Advent of Code.
  * https://adventofcode.com/2023/day/4
  *
- * Answer is
+ * Answer is 12263631
  */
 public class Problem4Part2 {
     /** Total value */
