@@ -2,7 +2,7 @@
 n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(åˆÏÉıÿÿÿÿ8Ê¶„…Ã1
 n	java:S116"RRename this field "SYMBOLS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…õİ8ªÚïÿÂ1
 n	java:S116"RRename this field "NUMBERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œïÉä8ªÚïÿÂ1
-l	java:S116"PRename this field "BLOCK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í¼şÂ8ªÚïÿÂ1
+l	java:S116"PRename this field "BLOCK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í¼şÂ8Éè€©Ã1
 r	java:S116"VRename this field "ALL_NUMBERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¸±Å8ªÚïÿÂ1
 >
 java:S1170"!Make this final field static too.(…õİ8ªÚïÿÂ1

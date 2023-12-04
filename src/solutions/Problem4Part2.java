@@ -24,7 +24,7 @@ public class Problem4Part2 {
     /** All linse in the file */
     private final Map<Integer, ArrayList<String>> FILE = new HashMap<>();
 
-    /** Constructor for Problem3Part1 */
+    /** Constructor for Problem4Part2 */
     public Problem4Part2() {
         try {
             File input = new File("resources/Problem4Input.txt");
@@ -64,7 +64,12 @@ public class Problem4Part2 {
         System.out.println("\n\nFINAL TOTAL: " + total);
     }
 
-    /** Process the input line */
+    /**
+     * Process the input line.
+     *
+     * @param curCard the card number
+     * @param numSets the string containing the winner number set and your number set
+     */
     private void processLine(int curCard, String numSets) {
         // Split it into the two different sets
         String[] sets = numSets.split("\\| ");

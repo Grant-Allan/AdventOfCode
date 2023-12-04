@@ -19,7 +19,7 @@ public class Problem4Part1 {
     /** Total value */
     private int total = 0;
 
-    /** Constructor for Problem3Part1 */
+    /** Constructor for Problem4Part1 */
     public Problem4Part1() {
         try {
             File input = new File("resources/Problem4Input.txt");

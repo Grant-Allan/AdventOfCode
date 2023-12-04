@@ -79,3 +79,12 @@ Q.idea/sonarlint/securityhotspotstore/3/1/31742aa828002a4a24aebdadf3a2aa22d225e1
 Q.idea/sonarlint/securityhotspotstore/5/e/5eca3e4237686a6251761f39001ca632be1ebcda,1\8\18c4bb586b451d4b1c3218e38e00d32c2e747f2a
 P
  src/solutions/Problem3Part2.java,6\3\638919204311c3394282e199a90f1c21af33f16c
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+K
+resources/Problem4Input.txt,7\e\7eb735601b63cd646d88e3dee9ea3830227f1f9a
+P
+ src/solutions/Problem4Part2.java,b\b\bb7624ae451505c5a3d5b28c6e5b92b5f14edfb3
+P
+ src/solutions/Problem4Part1.java,8\5\85b0c2e7525f0111da26b8d3a90a69a71acbc914

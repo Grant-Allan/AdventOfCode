@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
  * Answer is
  */
-public class Problem3Part1_FAIL {
+public class Problem3Part1_MESSY {
     /* All symbols */
     private final String SYMBOLS = "@#$%&*-+=/";
     private final String NUMBERS = "0123456789";
@@ -33,7 +33,7 @@ public class Problem3Part1_FAIL {
     }
 
     /** Constructor for Problem3Part1 */
-    public Problem3Part1_FAIL() {
+    public Problem3Part1_MESSY() {
         int total = 0;
 
         try {

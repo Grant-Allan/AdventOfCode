@@ -79,3 +79,12 @@ U
 %src/solutions/Problem3Part1_FAIL.java,0\5\054f809c93adba8bb76c2f58a357dd93ab0b4614
 P
  src/solutions/Problem3Part2.java,6\3\638919204311c3394282e199a90f1c21af33f16c
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+K
+resources/Problem4Input.txt,7\e\7eb735601b63cd646d88e3dee9ea3830227f1f9a
+P
+ src/solutions/Problem4Part1.java,8\5\85b0c2e7525f0111da26b8d3a90a69a71acbc914
+P
+ src/solutions/Problem4Part2.java,b\b\bb7624ae451505c5a3d5b28c6e5b92b5f14edfb3
