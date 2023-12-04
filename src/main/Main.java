@@ -17,8 +17,8 @@ public class Main {
         //new Problem2Part1();
         //new Problem2Part2();
 
-        //new Problem3Part1_MESSY();
         //new Problem3Part1();
+        //new Problem3Part1_MESSY();
         //new Problem3Part2();
 
         //new Problem4Part1();
