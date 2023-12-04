@@ -1,12 +1,10 @@
 package main;
 
-import solutions.problem4.Problem4Part2_EFFICIENT;
-
 import java.text.DecimalFormat;
 
 public class Main {
     public static void main(String[] args) {
-        // Get the time when the programm starts
+        // Get the time when the program starts
         long startTime = System.currentTimeMillis();
 
         /* RUN THE PROBLEMS */
