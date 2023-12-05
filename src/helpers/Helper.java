@@ -21,13 +21,13 @@ public class Helper {
         boolean numeric = false;
 
         // If the string is null or empty, exit immediately
-        if ((str == null) || (str.length()==0)) {
+        if ((str == null) || (str.isEmpty())) {
             return false;
         }
 
         // Check to see if a char string is a number
         try {
-            Integer.parseInt(str);
+            Long.parseLong(str);
             numeric = true;
         } catch (NumberFormatException ignored) {}
 
