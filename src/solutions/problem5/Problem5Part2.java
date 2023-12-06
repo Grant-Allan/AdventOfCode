@@ -13,6 +13,10 @@ import java.util.Scanner;
  * https://adventofcode.com/2023/day/5
  *
  * Answer is 148041808
+ *
+ * Note that this requires a bit of editing to the input file.
+ * Otherwise, it'll have a heap space error when the array gets
+ * too big.
  */
 public class Problem5Part2 {
     /** The initial seeds found */
