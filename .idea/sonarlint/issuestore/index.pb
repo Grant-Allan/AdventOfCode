@@ -1,14 +1,8 @@
 
 K
 resources/Problem3Input.txt,2\8\288a2db7e9b1d3dd8554cef32461459caf660238
-P
- src/solutions/Problem3Part2.java,6\3\638919204311c3394282e199a90f1c21af33f16c
-P
- src/solutions/Problem3Part1.java,1\b\1b1330850dcb3f384e0b5c36d7e4f26a505ce84f
 G
 src/helpers/Helper.java,6\8\680ae1e2e046924c3aa779a9af3ad76e5ac34931
-P
- src/solutions/Problem1Part1.java,b\3\b3f3c733e633b217e87642ae49b0bff29798eb2c
 K
 resources/Problem1Input.txt,a\3\a352e89c96057953fe6fea793fb7bb7b60cf75c1
 ]
@@ -18,7 +12,27 @@ S
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-Y
-)src/solutions/Problem1Part2_SUPERIOR.java,7\9\79160c6f97af5abe706df742669f781450fcd45c
 B
 src/main/Main.java,f\e\fe03b4fd3afe162c6e01309b98a22588e093d274
+Y
+)src/solutions/problem1/Problem1Part1.java,a\1\a17ccc49449b000e16a965cfffdbfe6e902c9a8b
+Y
+)src/solutions/problem1/Problem1Part2.java,e\a\ea55ffd9dedb3580ab3d8c92d49eb2c81c8f7b83
+b
+2src/solutions/problem1/Problem1Part2_SUPERIOR.java,9\7\978b9a9bb52d4bef6a72ded3cbeb27953df5086e
+Y
+)src/solutions/problem2/Problem2Part1.java,0\c\0cc8f493aef98e61dbe41e2a7ffcd13ae9a08903
+Y
+)src/solutions/problem2/Problem2Part2.java,d\c\dc4a391c088bec88cc497320932bde5aed5ec088
+Y
+)src/solutions/problem3/Problem3Part1.java,5\0\50d003c1f7230c46b27cbe0e6b979aa1988833f9
+_
+/src/solutions/problem3/Problem3Part1_MESSY.java,9\3\930ee2fe7e163b4a7ff08ac742b3bab66b3d7b6a
+Y
+)src/solutions/problem3/Problem3Part2.java,4\9\49248eb9756a45380ccffea4bc3946787d5fa8ed
+Y
+)src/solutions/problem4/Problem4Part1.java,e\c\ec5fc71549201635e798628605ea266b18af40ba
+Y
+)src/solutions/problem4/Problem4Part2.java,d\a\dae87821af061d0f915d4691e53c65413319ed88
+c
+3src/solutions/problem4/Problem4Part2_EFFICIENT.java,0\0\00148953e17929db5dbf4264499847d5ad72605e

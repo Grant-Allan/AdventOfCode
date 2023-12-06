@@ -5,7 +5,6 @@ import helpers.Helper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -14,15 +13,15 @@ import java.util.Scanner;
  *
  * Answer is 148041808
  */
-public class Problem5Part2 {
-    /** The initial seeds found */
-    private final ArrayList<Long> SEEDS = new ArrayList<>();
+public class Problem5Part2_EFFICIENT {
+    /** The current smallest location value */
+    private long smallest = Long.MAX_VALUE;
 
     /** Conversions list */
-    private final ArrayList<ArrayList<CONVERTER>> ALL_CONVERSIONS = new ArrayList<>();
+    private final ArrayList<ArrayList<CONVERTER>> allConversions = new ArrayList<>();
 
     /** Convert source values to destination values */
-    public class CONVERTER {
+    public static class CONVERTER {
         private long source = -1;
         private long dest = -1;
         private long range = -1;
@@ -92,62 +91,39 @@ public class Problem5Part2 {
     }
 
     /** Constructor for Problem5Part1 */
-    public Problem5Part2() {
+    public Problem5Part2_EFFICIENT() {
         try {
             File input = new File("resources/Problem5Input.txt");
             Scanner scanner = new Scanner(input);
 
             // Process the first line
             String[] firstLine = scanner.nextLine().split(" ");
+            ArrayList<Long> seeds = new ArrayList<>();
             for (String part : firstLine) {
                 if (Helper.isNumeric(part)) {
-                    SEEDS.add(Long.parseLong(part));
+                    seeds.add(Long.parseLong(part));
                 }
             }
 
             // Process the rest of the file
-            System.out.println("CREATING CONVERSIONS");
             while (scanner.hasNextLine()) {
                 processLine(scanner.nextLine());
             }
 
-            System.out.println("\n\n");
-            System.out.println("CREATE VALUES ARRAY");
-
-            // Do a single seed at a time
-            ArrayList<Long> finalValues = new ArrayList<>();
-            for (int i=0; i < SEEDS.size(); i+=2) {
-                System.out.println("Processing seed " + SEEDS.get(i) + " with range " + SEEDS.get(i+1));
+            // Process each seed, one at a time
+            System.out.printf("%-10s | %-10s | %-25s | %-25s%n", "Seed", "Range", "Current Smallest Value", "New Smallest Value");
+            for (int i = 0; i < seeds.size(); i+=2) {
+                System.out.printf("%-10d | %-10d | %-25d", seeds.get(i), seeds.get(i+1), smallest);
 
                 // Build the values array
-                Long[] values = new Long[SEEDS.get(i+1).intValue()];
-                for (int j=0; j < SEEDS.get(i+1); j++) {
-                    values[j] = (SEEDS.get(i)+j);
+                for (int j = 0; j < seeds.get(i+1); j++) {
+                    processValue((seeds.get(i) + j));
                 }
-
-                // Convert the values
-                for (ArrayList<CONVERTER> conversions : ALL_CONVERSIONS) {
-                    // Convert all the values
-                    for (int j = 0; j < values.length; j++) {
-                        for (CONVERTER converter : conversions) {
-                            if (converter.inRange(values[j])) {
-                                values[j] = converter.convertValue(values[j]);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                // Add the lowest number to the list of final values
-                Arrays.sort(values);
-                finalValues.add(values[0]);
+                System.out.printf(" | %-25d%n", smallest);
             }
 
             // Sort in ascending order and prlong the first element
-            Long[] finalValuesArray = finalValues.toArray(new Long[0]);
-            Arrays.sort(finalValuesArray);
-            System.out.println("\nFinal Values:\n" + Arrays.toString(finalValuesArray));
-            System.out.println("\n\nSMALLEST LOCATION VALUE: " + finalValuesArray[0]);
+            System.out.println("\nSMALLEST LOCATION VALUE: " + smallest);
 
             scanner.close();
         } catch (FileNotFoundException e) {
@@ -169,7 +145,7 @@ public class Problem5Part2 {
         // Check to see if it's the start of a new map
         // If it is, create a new converter for it
         if (line.contains("map")) {
-            ALL_CONVERSIONS.add(new ArrayList<>());
+            allConversions.add(new ArrayList<>());
             return;
         }
 
@@ -181,8 +157,22 @@ public class Problem5Part2 {
         converter.setSource(Long.parseLong(mapValues[1]));
         converter.setRange(Long.parseLong(mapValues[2]));
 
-        ALL_CONVERSIONS.get(ALL_CONVERSIONS.size()-1).add(converter);
+        allConversions.get(allConversions.size()-1).add(converter);
+    }
 
-        System.out.println(Arrays.toString(mapValues));
+    private void processValue(long value) {
+        // Convert the values
+        for (ArrayList<CONVERTER> conversions : allConversions) {
+            // Convert the value
+            for (CONVERTER converter : conversions) {
+                if (converter.inRange(value)) {
+                    value = converter.convertValue(value);
+                    break;
+                }
+            }
+        }
+
+        // Check to see if it's smaller than the current smallest
+        smallest = Math.min(value, smallest);
     }
 }
