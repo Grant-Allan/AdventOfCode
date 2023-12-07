@@ -11,13 +11,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Solution to problem seven, part one of Advent of Code.
+ * Solution to problem seven, part two of Advent of Code.
  * https://adventofcode.com/2023/day/7
  *
- * Answer is 252295678
+ * Answer is 250577259
  */
-public class Problem7Part1 {
-    private static final String ORDER = "23456789TJQKA";
+public class Problem7Part2 {
+    private static final String ORDER = "J23456789TQKA";
 
     private final ArrayList<Hand> allHands = new ArrayList<>();
     private int total = 0;
@@ -81,13 +81,26 @@ public class Problem7Part1 {
 
             // Find how many repeats there are in it
             int highest = 0;
-            for (Integer occurrences : tracker.values()) {
-                highest = (occurrences > highest) ? occurrences : highest;
+            for (Map.Entry<Character, Integer> entry : tracker.entrySet()) {
+                // If it's jokers, skip
+                if (entry.getKey().equals('J')) {
+                    continue;
+                }
+
+                // Track the highest number of cards
+                highest = (entry.getValue() > highest) ? entry.getValue() : highest;
+            }
+
+            // Add the number of joker cards to the totals used to determine the type
+            int setsOfCards = tracker.size();
+            if (tracker.get('J') != null) {
+                highest += tracker.get('J');
+                setsOfCards--;
             }
 
             // Figure out which type of hand it is
-            switch (tracker.size()) {
-                case 1:
+            switch (setsOfCards) {
+                case 0, 1:
                     type = TYPES.FIVE_KIND;
                     break;
                 case 2:
@@ -108,7 +121,7 @@ public class Problem7Part1 {
     }
 
     /** Constructor */
-    public Problem7Part1() {
+    public Problem7Part2() {
         try {
             File input = new File("resources/Problem7Input.txt");
             Scanner scanner = new Scanner(input);
