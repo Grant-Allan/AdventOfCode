@@ -24,3 +24,7 @@ Y
 )src/solutions/problem5/Problem5Part2.java,2\2\223dcdbbe49e28b286e1f4988779026f2b09915e
 Y
 )src/solutions/problem5/Problem5Part1.java,3\a\3ac183a4374723da878a0d1160d5281e900f9392
+c
+3src/solutions/problem5/Problem5Part2_EFFICIENT.java,a\a\aa38d5a7b3ed521fc7bacf4ff0aadef38fc6ca7e
+b
+2src/solutions/problem5/Problem5Part2_SUPERIOR.java,c\5\c5d51ec9da6f1967ce001361fcb80f480ac1d243
