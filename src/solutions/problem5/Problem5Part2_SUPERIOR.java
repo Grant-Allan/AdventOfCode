@@ -216,9 +216,9 @@ public class Problem5Part2_SUPERIOR {
 
             // Convert values
             ArrayList<Long> converting = toBeConverted.remove(0);
-            for (int i=0; i < converting.length; i+=2) {
+            for (int i=0; i < converting.size(); i+=2) {
                 for (CONVERTER converter : conversions) {
-                    var converted = converter.convertRange(converting[i], converting[i+1]);
+                    var converted = converter.convertRange(converting.get(i), converting.get(i+1));
                     if (converted != null) {
                         // Add the first two elements to the next row of toBeConvered
                         converted.subList(0, 2).addAll(toBeConverted.get(toBeConverted.size()-1));
