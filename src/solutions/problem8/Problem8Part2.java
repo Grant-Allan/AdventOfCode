@@ -12,7 +12,7 @@ import java.util.Scanner;
  * Solution to problem eight, part two of Advent of Code.
  * https://adventofcode.com/2023/day/8
  *
- * Answer is
+ * Answer is 13129439557681
  */
 public class Problem8Part2 {
     private final Map<String, Branches> nodes = new HashMap<>();
