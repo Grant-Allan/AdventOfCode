@@ -1,10 +1,7 @@
 package main;
 
-import solutions.problem5.Problem5Part2_EFFICIENT;
-import solutions.problem6.Problem6Part1;
-import solutions.problem6.Problem6Part2;
-import solutions.problem7.Problem7Part1;
-import solutions.problem7.Problem7Part2;
+import solutions.problem8.Problem8Part1;
+import solutions.problem8.Problem8Part2;
 
 import java.text.DecimalFormat;
 
@@ -37,7 +34,10 @@ public class Main {
         //new Problem6Part2();
 
         //new Problem7Part1();
-        new Problem7Part2();
+        //new Problem7Part2();
+
+        //new Problem8Part1();
+        new Problem8Part2();
 
         // Get the time taken for the program to run
         long endTime = System.currentTimeMillis();

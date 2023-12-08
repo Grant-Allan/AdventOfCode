@@ -100,7 +100,8 @@ public class Problem7Part2 {
 
             // Figure out which type of hand it is
             switch (setsOfCards) {
-                case 0, 1:
+                case 0:
+                case 1:
                     type = TYPES.FIVE_KIND;
                     break;
                 case 2:
