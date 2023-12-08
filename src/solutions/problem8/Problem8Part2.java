@@ -75,10 +75,10 @@ public class Problem8Part2 {
             System.out.println();
 
             // Do the math to calculate how many steps are needed
-            //calculateSteps();
+            calculateSteps();
 
             // Go through the nodes according to the directions until reaching Z
-            reachGoal();
+            //reachGoal();
 
             System.out.println("\n\nTotal Steps: " + totalSteps);
 
@@ -165,6 +165,10 @@ public class Problem8Part2 {
         }
     }
 
+    /**
+     * Check the current nodes to see if they've all reached their target Z
+     * @return true for if they have, false for if they haven't
+     */
     private boolean allAtEnd() {
         for (var node : currentNodes) {
             if (node.charAt(2) != 'Z') {
