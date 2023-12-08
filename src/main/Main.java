@@ -1,5 +1,23 @@
 package main;
 
+import solutions.problem1.Problem1Part1;
+import solutions.problem1.Problem1Part2;
+import solutions.problem1.Problem1Part2_SUPERIOR;
+import solutions.problem2.Problem2Part1;
+import solutions.problem2.Problem2Part2;
+import solutions.problem3.Problem3Part1;
+import solutions.problem3.Problem3Part1_MESSY;
+import solutions.problem3.Problem3Part2;
+import solutions.problem4.Problem4Part1;
+import solutions.problem4.Problem4Part2;
+import solutions.problem4.Problem4Part2_EFFICIENT;
+import solutions.problem5.Problem5Part1;
+import solutions.problem5.Problem5Part2;
+import solutions.problem5.Problem5Part2_EFFICIENT;
+import solutions.problem6.Problem6Part1;
+import solutions.problem6.Problem6Part2;
+import solutions.problem7.Problem7Part1;
+import solutions.problem7.Problem7Part2;
 import solutions.problem8.Problem8Part1;
 import solutions.problem8.Problem8Part2;
 

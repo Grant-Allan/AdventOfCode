@@ -75,10 +75,10 @@ public class Problem8Part2 {
             System.out.println();
 
             // Do the math to calculate how many steps are needed
-            calculateSteps();
+            //calculateSteps();
 
-            // Go through the nodes according to the directions until reaching ZZZ
-            //reachGoal();
+            // Go through the nodes according to the directions until reaching Z
+            reachGoal();
 
             System.out.println("\n\nTotal Steps: " + totalSteps);
 
@@ -144,5 +144,33 @@ public class Problem8Part2 {
      */
     public long greatestCommonDivisor(long n1, long n2) {
         return (n2 == 0) ? n1 : greatestCommonDivisor(n2, n1 % n2);
+    }
+
+    /**
+     * Walk through the steps needed to reach the goal
+     * This works, but it's very, very slow
+     */
+    private void reachGoal() {
+        System.out.printf("%-10s | %-30s | %-10s | %-30s%n", "Step", "Current Nodes", "Direction", "New Nodes");
+        while (!allAtEnd()) {
+            char currentDirection = directions[(int) (totalSteps % directions.length)];
+            System.out.printf("%-10s | %-30s | %-10s | ", totalSteps, currentNodes, currentDirection);
+
+            for (int i=0; i < currentNodes.size(); i++) {
+                currentNodes.set(i, nodes.get(currentNodes.get(i)).getPath(currentDirection));
+                System.out.printf("%s, ", currentNodes.get(i));
+            }
+            totalSteps++;
+            System.out.println();
+        }
+    }
+
+    private boolean allAtEnd() {
+        for (var node : currentNodes) {
+            if (node.charAt(2) != 'Z') {
+                return false;
+            }
+        }
+        return true;
     }
 }
