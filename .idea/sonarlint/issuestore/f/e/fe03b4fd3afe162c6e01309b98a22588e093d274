@@ -1,15 +1,17 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(Äê›Ğıÿÿÿÿ8Á  ‡Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(€ˆìˆ8Á  ‡Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(äØ³½8Á  ‡Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(ü¬›8Á  ‡Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(ğ‘ç¡8Á  ‡Ä1
-]	java:S125#"<This block of commented-out lines of code should be removed.(¦ª¯„üÿÿÿÿ8Á  ‡Ä1
-X	java:S125'"<This block of commented-out lines of code should be removed.(é’…°8ì“¤Ä1
-L	java:S106T"+Replace this use of System.out by a logger.(…÷Æ÷øÿÿÿÿ8’µ³Ã1
+]	java:S125"<This block of commented-out lines of code should be removed.(Äê›Ğıÿÿÿÿ8¶üÌ±Ä1
+X	java:S125"<This block of commented-out lines of code should be removed.(€ˆìˆ8·üÌ±Ä1
+X	java:S125"<This block of commented-out lines of code should be removed.(äØ³½8·üÌ±Ä1
+X	java:S125"<This block of commented-out lines of code should be removed.(ü¬›8·üÌ±Ä1
+X	java:S125 "<This block of commented-out lines of code should be removed.(ğ‘ç¡8·üÌ±Ä1
+]	java:S125$"<This block of commented-out lines of code should be removed.(¦ª¯„üÿÿÿÿ8·üÌ±Ä1
+X	java:S125'"<This block of commented-out lines of code should be removed.(˜É±°8¬è²Ä1
+L	java:S106U"+Replace this use of System.out by a logger.(…÷Æ÷øÿÿÿÿ8Å–Ö¶Ã1
 i
-java:S1128"GRemove this unused import 'solutions.problem5.Problem5Part2_EFFICIENT'.(´¸ú»ÿÿÿÿÿ8ö‡ß°Ä1
+java:S1128"GRemove this unused import 'solutions.problem5.Problem5Part2_EFFICIENT'.(´¸ú»ÿÿÿÿÿ8ª€²Ä1
 _
-java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part1'.(ıÊ—İÿÿÿÿÿ8ö‡ß°Ä1
+java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part1'.(ıÊ—İÿÿÿÿÿ8ª€²Ä1
 _
-java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part2'.(Øÿü×şÿÿÿÿ8ö‡ß°Ä1
+java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part2'.(Øÿü×şÿÿÿÿ8ª€²Ä1
+_
+java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part1'.(ß¿Ùáÿÿÿÿÿ8ª€²Ä1

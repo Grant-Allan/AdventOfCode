@@ -151,10 +151,10 @@ public class Problem8Part2 {
      * This works, but it's very, very slow
      */
     private void reachGoal() {
-        System.out.printf("%-10s | %-30s | %-10s | %-30s%n", "Step", "Current Nodes", "Direction", "New Nodes");
+        System.out.printf("%-15s | %-30s | %-10s | %-30s%n", "Step", "Current Nodes", "Direction", "New Nodes");
         while (!allAtEnd()) {
             char currentDirection = directions[(int) (totalSteps % directions.length)];
-            System.out.printf("%-10s | %-30s | %-10s | ", totalSteps, currentNodes, currentDirection);
+            System.out.printf("%-15s | %-30s | %-10s | ", totalSteps, currentNodes, currentDirection);
 
             for (int i=0; i < currentNodes.size(); i++) {
                 currentNodes.set(i, nodes.get(currentNodes.get(i)).getPath(currentDirection));
