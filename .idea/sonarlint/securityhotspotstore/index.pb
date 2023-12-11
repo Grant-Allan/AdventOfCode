@@ -51,3 +51,11 @@ Y
 )src/solutions/problem7/Problem7Part1.java,b\4\b4a4fd30898bce31468881743f42bfc94c68f371
 Y
 )src/solutions/problem7/Problem7Part2.java,e\f\efb4aed8ddcb12122d2fc26720c5c95a059b1112
+Y
+)src/solutions/problem8/Problem8Part2.java,d\6\d6389b1caa24361792ce5c06f8e01daae8fb1174
+Y
+)src/solutions/problem9/Problem9Part2.java,5\c\5cdd73ec5a06f9e1213b9ac01bd8973c9bbece12
+K
+resources/Problem9Input.txt,8\d\8d3a941e149cb6357037155d4b2a86f48d68da8d
+Y
+)src/solutions/problem9/Problem9Part1.java,c\e\ce96f078a2722d03f7c509b31717c03ee709d042

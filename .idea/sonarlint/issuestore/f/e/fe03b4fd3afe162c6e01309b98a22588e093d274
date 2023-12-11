@@ -1,17 +1,54 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(Äê›Ğıÿÿÿÿ8¶üÌ±Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(€ˆìˆ8·üÌ±Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(äØ³½8·üÌ±Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(ü¬›8·üÌ±Ä1
-X	java:S125 "<This block of commented-out lines of code should be removed.(ğ‘ç¡8·üÌ±Ä1
-]	java:S125$"<This block of commented-out lines of code should be removed.(¦ª¯„üÿÿÿÿ8·üÌ±Ä1
-X	java:S125'"<This block of commented-out lines of code should be removed.(˜É±°8¬è²Ä1
-L	java:S106U"+Replace this use of System.out by a logger.(…÷Æ÷øÿÿÿÿ8Å–Ö¶Ã1
+]	java:S125""<This block of commented-out lines of code should be removed.(Äê›Ğıÿÿÿÿ8ì§­âÄ1
+X	java:S125&"<This block of commented-out lines of code should be removed.(€ˆìˆ8ì§­âÄ1
+X	java:S125)"<This block of commented-out lines of code should be removed.(äØ³½8ì§­âÄ1
+X	java:S125-"<This block of commented-out lines of code should be removed.(ü¬›8ì§­âÄ1
+X	java:S1251"<This block of commented-out lines of code should be removed.(ğ‘ç¡8í§­âÄ1
+]	java:S1255"<This block of commented-out lines of code should be removed.(¦ª¯„üÿÿÿÿ8í§­âÄ1
+X	java:S1258"<This block of commented-out lines of code should be removed.(˜É±°8í§­âÄ1
+]	java:S125;"<This block of commented-out lines of code should be removed.(›­†Àıÿÿÿÿ8í§­âÄ1
+]	java:S125>"<This block of commented-out lines of code should be removed.(ş€Òîûÿÿÿÿ8À¿öÄ1
+L	java:S106l"+Replace this use of System.out by a logger.(…÷Æ÷øÿÿÿÿ8’µ³Ã1
+_
+java:S1128"=Remove this unused import 'solutions.problem1.Problem1Part1'.(ª¼ûùÿÿÿÿ8ŞÈÓõÄ1
+_
+java:S1128"=Remove this unused import 'solutions.problem1.Problem1Part2'.(°¿¡½ÿÿÿÿÿ8ŞÈÓõÄ1
+b
+java:S1128"FRemove this unused import 'solutions.problem1.Problem1Part2_SUPERIOR'.(ÎË¤u8ŞÈÓõÄ1
+_
+java:S1128"=Remove this unused import 'solutions.problem2.Problem2Part1'.(¸†Œéùÿÿÿÿ8ŞÈÓõÄ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem2.Problem2Part2'.(´úè˜8ŞÈÓõÄ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem3.Problem3Part1'.(¥Ê”8ßÈÓõÄ1
+e
+java:S1128	"CRemove this unused import 'solutions.problem3.Problem3Part1_MESSY'.(½Å´Ÿüÿÿÿÿ8ßÈÓõÄ1
+_
+java:S1128
+"=Remove this unused import 'solutions.problem3.Problem3Part2'.(ƒç˜ıÿÿÿÿ8ßÈÓõÄ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem4.Problem4Part1'.(Ë–ß8ßÈÓõÄ1
+_
+java:S1128"=Remove this unused import 'solutions.problem4.Problem4Part2'.(òĞœÃşÿÿÿÿ8ßÈÓõÄ1
 i
-java:S1128"GRemove this unused import 'solutions.problem5.Problem5Part2_EFFICIENT'.(´¸ú»ÿÿÿÿÿ8ª€²Ä1
+java:S1128"GRemove this unused import 'solutions.problem4.Problem4Part2_EFFICIENT'.(š³’ºıÿÿÿÿ8ßÈÓõÄ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem5.Problem5Part1'.(ŠäıÚ8ßÈÓõÄ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem5.Problem5Part2'.(ƒµ”8ßÈÓõÄ1
+i
+java:S1128"GRemove this unused import 'solutions.problem5.Problem5Part2_EFFICIENT'.(´¸ú»ÿÿÿÿÿ8ßÈÓõÄ1
 _
-java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part1'.(ıÊ—İÿÿÿÿÿ8ª€²Ä1
+java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part1'.(ıÊ—İÿÿÿÿÿ8ßÈÓõÄ1
 _
-java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part2'.(Øÿü×şÿÿÿÿ8ª€²Ä1
+java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part2'.(Øÿü×şÿÿÿÿ8ßÈÓõÄ1
 _
-java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part1'.(ß¿Ùáÿÿÿÿÿ8ª€²Ä1
+java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part1'.(ß¿Ùáÿÿÿÿÿ8ßÈÓõÄ1
+_
+java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part2'.(ğÏÃŒıÿÿÿÿ8ßÈÓõÄ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem8.Problem8Part1'.(»’ÕÏ8àÈÓõÄ1
+_
+java:S1128"=Remove this unused import 'solutions.problem8.Problem8Part2'.(ˆ‚£øÿÿÿÿ8èÀ¿öÄ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem9.Problem9Part1'.(ÈöĞ¨8Ã¿öÄ1
