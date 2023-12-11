@@ -132,7 +132,6 @@ public class Problem10Part2 {
             west = new Pipe(lines[westCoords[0]][westCoords[1]], westCoords);
         }
 
-
         switch (pipe1.getPipeType()) {
             case '|':
                 if ((south != null) && ((north == null) ||
@@ -243,16 +242,21 @@ public class Problem10Part2 {
      */
     private int[] isAdjacent(int[] prevLoc, int[] curLoc, int[] nextLoc) {
         for (int[] loc : pathHistory) {
-            // Check to make sure there's an adjacent location that isn't the previous or next location
+            // Make sure it isn't the previous or next location in the pipe
             boolean isPrevLoc = ((loc[0] == prevLoc[0]) && (loc[1] == prevLoc[1]));
             boolean isNextLoc = ((loc[0] == nextLoc[0]) && (loc[1] == nextLoc[1]));
 
+            // Each side
             boolean northAdj = ((loc[0] == curLoc[0]-1) && (loc[1] == curLoc[1]))   && !isPrevLoc && !isNextLoc;
             boolean southAdj = ((loc[0] == curLoc[0]+1) && (loc[1] == curLoc[1]))   && !isPrevLoc && !isNextLoc;
             boolean eastAdj  = ((loc[0] == curLoc[0])   && (loc[1] == curLoc[1]+1)) && !isPrevLoc && !isNextLoc;
             boolean westAdj  = ((loc[0] == curLoc[0])   && (loc[1] == curLoc[1]-1)) && !isPrevLoc && !isNextLoc;
 
-            // Gotta check corners as well
+            // Diagonals
+            boolean northEastAdj = ((loc[0] == curLoc[0]-1) && (loc[1] == curLoc[1]+1)) && !isPrevLoc && !isNextLoc;
+            boolean northWestAdj = ((loc[0] == curLoc[0]-1) && (loc[1] == curLoc[1]-1)) && !isPrevLoc && !isNextLoc;
+            boolean southEastAdj = ((loc[0] == curLoc[0]+1) && (loc[1] == curLoc[1]+1)) && !isPrevLoc && !isNextLoc;
+            boolean southWestAdj = ((loc[0] == curLoc[0]+1) && (loc[1] == curLoc[1]-1)) && !isPrevLoc && !isNextLoc;
 
             if (northAdj) {
                 return new int[] { curLoc[0]+1, curLoc[1] };
@@ -262,6 +266,14 @@ public class Problem10Part2 {
                 return new int[] { curLoc[0], curLoc[1]-1 };
             } else if (westAdj) {
                 return new int[] { curLoc[0], curLoc[1]+1 };
+            } else if (northEastAdj) {
+                return new int[] { curLoc[0]-1, curLoc[1]+1 };
+            } else if (northWestAdj) {
+                return new int[] { curLoc[0]-1, curLoc[1]-1 };
+            } else if (southEastAdj) {
+                return new int[] { curLoc[0]+1, curLoc[1]+1 };
+            } else if (southWestAdj) {
+                return new int[] { curLoc[0]+1, curLoc[1]-1 };
             }
         }
         return new int[0];

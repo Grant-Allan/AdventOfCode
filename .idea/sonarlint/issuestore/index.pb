@@ -49,6 +49,17 @@ K
 Advent.iml,2\e\2e9a13191cdbb44bd8f315aa29a1f56ffc884103
 Y
 )src/solutions/problem7/Problem7Part1.java,b\4\b4a4fd30898bce31468881743f42bfc94c68f371
+:
+
+Advent.iml,2\e\2e9a13191cdbb44bd8f315aa29a1f56ffc884103
+Y
+)src/solutions/problem7/Problem7Part2.java,e\f\efb4aed8ddcb12122d2fc26720c5c95a059b1112
+Y
+)src/solutions/problem8/Problem8Part1.java,0\b\0b33d6c77221f74b74252e1007d646900c9ea01e
+K
+resources/Problem8Input.txt,d\3\d3f70212bb92cde481b4c4d616a29b2723ac5e2c
+Y
+)src/solutions/problem8/Problem8Part2.java,d\6\d6389b1caa24361792ce5c06f8e01daae8fb1174
 Y
 )src/solutions/problem7/Problem7Part2.java,e\f\efb4aed8ddcb12122d2fc26720c5c95a059b1112
 Y
