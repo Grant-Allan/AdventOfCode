@@ -45,3 +45,11 @@ K
 resources/Problem8Input.txt,d\3\d3f70212bb92cde481b4c4d616a29b2723ac5e2c
 Y
 )src/solutions/problem8/Problem8Part2.java,d\6\d6389b1caa24361792ce5c06f8e01daae8fb1174
+L
+resources/Problem10Input.txt,2\c\2c08ff84784cb11b70eb6330669489c8209e23c1
+L
+resources/Problem11Input.txt,6\2\62a1dc5c175b9f4f06d9ed5f232f1f3c5774a257
+[
++src/solutions/problem11/Problem11Part1.java,3\6\36ac8759102dbafeb74798fd9b15606763eeeb20
+[
++src/solutions/problem10/Problem10Part2.java,9\8\98c1a3574057a26133c221c7e41cfbfd797d57cc

@@ -3,7 +3,6 @@ package solutions.problem10;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -11,45 +10,45 @@ import java.util.Scanner;
  * Solution to problem ten, part two of Advent of Code.
  * https://adventofcode.com/2023/day/10
  *
- * Answer is
+ * Answer is 477
  */
 public class Problem10Part2 {
     private char[][] lines;
-    private final ArrayList<int[]> pathHistory = new ArrayList<>();
-    private final ArrayList<int[]> allEnclosedCoords = new ArrayList<>();
-    private final ArrayList<int[]> rejectedCoords = new ArrayList<>();
+    private ArrayList<int[]> pathHistory = new ArrayList<>();
+    private final ArrayList<int[]> allEnclosedCoordinates = new ArrayList<>();
+    private final ArrayList<int[]> rejectedCoordinates = new ArrayList<>();
 
     private class Pipe {
         private char pipeType;
-        private int[] curCoords;
-        private int[] prevCoords;
+        private int[] curCoordinates;
+        private int[] prevCoordinates;
 
-        public Pipe(char pipeType, int[] coords) {
+        public Pipe(char pipeType, int[] coordinates) {
             this.pipeType = pipeType;
-            this.curCoords = coords;
+            this.curCoordinates = coordinates;
         }
 
         public Pipe(char pipeType, int x, int y) {
             this.pipeType = pipeType;
-            this.curCoords = new int[] { x, y };
+            this.curCoordinates = new int[] { x, y };
         }
 
-        public void setCurCoords(int[] curCoords) {
-            this.prevCoords = this.curCoords;
-            this.curCoords = curCoords;
-            this.pipeType = lines[curCoords[0]][curCoords[1]];
+        public void setCurCoordinates(int[] curCoordinates) {
+            this.prevCoordinates = this.curCoordinates;
+            this.curCoordinates = curCoordinates;
+            this.pipeType = lines[curCoordinates[0]][curCoordinates[1]];
         }
 
         public char getPipeType() {
             return pipeType;
         }
 
-        public int[] getCurCoords() {
-            return curCoords;
+        public int[] getCurCoordinates() {
+            return curCoordinates;
         }
 
-        public int[] getPrevCoords() {
-            return prevCoords;
+        public int[] getPrevCoordinates() {
+            return prevCoordinates;
         }
     }
 
@@ -64,13 +63,91 @@ public class Problem10Part2 {
             while (scanner.hasNextLine()) {
                 char[] line = scanner.nextLine().toCharArray();
                 linesOccurences.add(line);
-                System.out.println(line);
             }
             lines = linesOccurences.toArray(new char[0][0]);
-            System.out.println();
 
-            findFurthestPoint();
-            findEnclosedAreas();
+            // Find the pipe locations
+            findPipe();
+
+            // Expand the lines so cracks are easier to find
+            char[][] newLines = new char[lines.length*2][lines[0].length*2];
+            for (int i=0; i < newLines.length-1; i++) {
+                for (int j=0; j < newLines[0].length-1; j++) {
+                    // Is previously empty space
+                    if ((i%2 == 0) && (j%2 == 0)) {
+                        newLines[i][j] = '.';
+                    }
+                    // Is newly added
+                    else {
+                        newLines[i][j] = '*';
+                    }
+                }
+            }
+
+            // Put the path in
+            for (int i=0; i < pathHistory.size()-1; i++) {
+                int[] coord1 = pathHistory.get(i);
+                int[] coord2 = pathHistory.get(i+1);
+
+                // Find the direction of movement
+                int[] direction = new int[] { coord2[0]-coord1[0], coord2[1]-coord1[1] };
+
+                // Place pipeline
+                newLines[(coord1[0]*2)][(coord1[1]*2)] = lines[coord1[0]][coord1[1]];
+
+                if (direction[0] != 0) {
+                    newLines[(coord1[0]*2)+direction[0]][(coord1[1]*2)+direction[1]] = '|';
+                } else {
+                    newLines[(coord1[0]*2)+direction[0]][(coord1[1]*2)+direction[1]] = '-';
+                }
+            }
+            lines = newLines;
+
+
+            for (int i=0; i < lines.length-1; i++) {
+                for (int j = 0; j < lines[0].length - 1; j++) {
+                    System.out.print(lines[i][j]);
+                }
+                System.out.println();
+            }
+
+            // Find the pipe locations
+            findPipe();
+
+            // Find anything that isn't a pipe and check for if it's an enclosed area
+            for (int i=lines.length-1; i > 0; i--) {
+                for (int j=lines[0].length-1; j > 0; j--) {
+                    // If the coordinate isn't a pipe location or previously rejected or already accepted,
+                    // find the entire area it's connected to
+                    int[] coordinates = new int[] { i, j };
+                    if (!hasCoord(pathHistory, coordinates) &&
+                            !hasCoord(rejectedCoordinates, coordinates) &&
+                            !hasCoord(allEnclosedCoordinates, coordinates)) {
+                        findEnclosedArea(coordinates);
+                    }
+                }
+            }
+
+            // Sort the coordinates by their x value, lowest to highest
+            allEnclosedCoordinates.sort((Comparator<? super int[]>) (coordinates1, coordinates2) -> {
+                // Compare y
+                if (coordinates1[0] > coordinates2[0]) {
+                    return 1;
+                } else if (coordinates1[0] < coordinates2[0]) {
+                    return -1;
+                }
+
+                // Compare x if y are the same
+                if (coordinates1[1] > coordinates2[1]) {
+                    return 1;
+                } else if (coordinates1[1] < coordinates2[1]) {
+                    return -1;
+                }
+
+                return 0;
+            });
+
+            System.out.println("\n\nTotal: " + allEnclosedCoordinates.size());
 
             scanner.close();
         } catch (FileNotFoundException e) {
@@ -79,7 +156,10 @@ public class Problem10Part2 {
         }
     }
 
-    private void findFurthestPoint() {
+    /** Find the entire path from start to start */
+    private void findPipe() {
+        pathHistory.clear();
+
         // Find the location of S
         Pipe traverse = null;
         for (int x=0; x < lines.length; x++) {
@@ -89,133 +169,130 @@ public class Problem10Part2 {
                 }
             }
         }
+
+        // Add S
         assert traverse != null;
-        pathHistory.add(traverse.getCurCoords());
+        pathHistory.add(traverse.getCurCoordinates());
 
         // Find all the pipe locations
         do {
             findNextPipe(traverse);
-            pathHistory.add(traverse.getCurCoords());
+            pathHistory.add(traverse.getCurCoordinates());
         } while (traverse.getPipeType() != 'S');
-
-        System.out.println();
-
-        // Find the areas enclosed by the pipes
-        // Find values one apart from each other on a single axis? Or one on both?
     }
 
     private void findNextPipe(Pipe pipe1) {
         // Given the pipe type, find the connection pipes
-        int[] northCoords = new int[] { pipe1.getCurCoords()[0]-1, pipe1.getCurCoords()[1] };
+        int[] northCoordinates = new int[] { pipe1.getCurCoordinates()[0]-1, pipe1.getCurCoordinates()[1] };
         Pipe north = null;
-        if ((northCoords[0] >= 0) && (northCoords[1] >= 0) &&
-            (northCoords[0] < lines.length) && (northCoords[1] < lines[0].length)) {
-            north = new Pipe(lines[northCoords[0]][northCoords[1]], northCoords);
+        if ((northCoordinates[0] >= 0) && (northCoordinates[1] >= 0) &&
+                (northCoordinates[0] < lines.length) && (northCoordinates[1] < lines[0].length)) {
+            north = new Pipe(lines[northCoordinates[0]][northCoordinates[1]], northCoordinates);
         }
 
-        int[] southCoords = new int[] { pipe1.getCurCoords()[0]+1, pipe1.getCurCoords()[1] };
+        int[] southCoordinates = new int[] { pipe1.getCurCoordinates()[0]+1, pipe1.getCurCoordinates()[1] };
         Pipe south = null;
-        if ((southCoords[0] >= 0) && (southCoords[1] >= 0) &&
-            (southCoords[0] < lines.length) && (southCoords[1] < lines[0].length)) {
-            south = new Pipe(lines[southCoords[0]][southCoords[1]], southCoords);
+        if ((southCoordinates[0] >= 0) && (southCoordinates[1] >= 0) &&
+                (southCoordinates[0] < lines.length) && (southCoordinates[1] < lines[0].length)) {
+            south = new Pipe(lines[southCoordinates[0]][southCoordinates[1]], southCoordinates);
         }
 
-        int[] eastCoords = new int[] { pipe1.getCurCoords()[0], pipe1.getCurCoords()[1]+1 };
+        int[] eastCoordinates = new int[] { pipe1.getCurCoordinates()[0], pipe1.getCurCoordinates()[1]+1 };
         Pipe east = null;
-        if ((eastCoords[0] >= 0) && (eastCoords[1] >= 0) &&
-            (eastCoords[0] < lines.length) && (eastCoords[1] < lines[0].length)) {
-            east = new Pipe(lines[eastCoords[0]][eastCoords[1]], eastCoords);
+        if ((eastCoordinates[0] >= 0) && (eastCoordinates[1] >= 0) &&
+                (eastCoordinates[0] < lines.length) && (eastCoordinates[1] < lines[0].length)) {
+            east = new Pipe(lines[eastCoordinates[0]][eastCoordinates[1]], eastCoordinates);
         }
 
-        int[] westCoords = new int[] { pipe1.getCurCoords()[0], pipe1.getCurCoords()[1]-1 };
+        int[] westCoordinates = new int[] { pipe1.getCurCoordinates()[0], pipe1.getCurCoordinates()[1]-1 };
         Pipe west = null;
-        if ((westCoords[0] >= 0) && (westCoords[1] >= 0) &&
-            (westCoords[0] < lines.length) && (westCoords[1] < lines[0].length)) {
-            west = new Pipe(lines[westCoords[0]][westCoords[1]], westCoords);
+        if ((westCoordinates[0] >= 0) && (westCoordinates[1] >= 0) &&
+                (westCoordinates[0] < lines.length) && (westCoordinates[1] < lines[0].length)) {
+            west = new Pipe(lines[westCoordinates[0]][westCoordinates[1]], westCoordinates);
         }
 
         switch (pipe1.getPipeType()) {
             case '|':
                 if ((south != null) && ((north == null) ||
-                        ((pipe1.getPrevCoords()[0] == north.getCurCoords()[0]) &&
-                         (pipe1.getPrevCoords()[1] == north.getCurCoords()[1])))) {
-                    pipe1.setCurCoords(south.getCurCoords());
+                        ((pipe1.getPrevCoordinates()[0] == north.getCurCoordinates()[0]) &&
+                                (pipe1.getPrevCoordinates()[1] == north.getCurCoordinates()[1])))) {
+                    pipe1.setCurCoordinates(south.getCurCoordinates());
                 } else if (north != null) {
-                    pipe1.setCurCoords(north.getCurCoords());
+                    pipe1.setCurCoordinates(north.getCurCoordinates());
                 }
                 break;
 
             case '-':
                 if ((west != null) && ((east == null) ||
-                    ((pipe1.getPrevCoords()[0] == east.getCurCoords()[0]) &&
-                     (pipe1.getPrevCoords()[1] == east.getCurCoords()[1])))) {
-                    pipe1.setCurCoords(west.getCurCoords());
+                        ((pipe1.getPrevCoordinates()[0] == east.getCurCoordinates()[0]) &&
+                                (pipe1.getPrevCoordinates()[1] == east.getCurCoordinates()[1])))) {
+                    pipe1.setCurCoordinates(west.getCurCoordinates());
                 } else if (east != null) {
-                    pipe1.setCurCoords(east.getCurCoords());
+                    pipe1.setCurCoordinates(east.getCurCoordinates());
                 }
                 break;
 
             case 'L':
                 if ((north != null) && ((east == null) ||
-                    ((pipe1.getPrevCoords()[0] == east.getCurCoords()[0]) &&
-                     (pipe1.getPrevCoords()[1] == east.getCurCoords()[1])))) {
-                    pipe1.setCurCoords(north.getCurCoords());
+                        ((pipe1.getPrevCoordinates()[0] == east.getCurCoordinates()[0]) &&
+                                (pipe1.getPrevCoordinates()[1] == east.getCurCoordinates()[1])))) {
+                    pipe1.setCurCoordinates(north.getCurCoordinates());
                 } else if (east != null) {
-                    pipe1.setCurCoords(east.getCurCoords());
+                    pipe1.setCurCoordinates(east.getCurCoordinates());
                 }
                 break;
 
             case 'J':
                 if ((north != null) && ((west == null) ||
-                    ((pipe1.getPrevCoords()[0] == west.getCurCoords()[0]) &&
-                     (pipe1.getPrevCoords()[1] == west.getCurCoords()[1])))) {
-                    pipe1.setCurCoords(north.getCurCoords());
+                        ((pipe1.getPrevCoordinates()[0] == west.getCurCoordinates()[0]) &&
+                                (pipe1.getPrevCoordinates()[1] == west.getCurCoordinates()[1])))) {
+                    pipe1.setCurCoordinates(north.getCurCoordinates());
                 } else if (west != null) {
-                    pipe1.setCurCoords(west.getCurCoords());
+                    pipe1.setCurCoordinates(west.getCurCoordinates());
                 }
                 break;
 
             case '7':
                 if ((south != null) && ((west == null) ||
-                    ((pipe1.getPrevCoords()[0] == west.getCurCoords()[0]) &&
-                     (pipe1.getPrevCoords()[1] == west.getCurCoords()[1])))) {
-                    pipe1.setCurCoords(south.getCurCoords());
+                        ((pipe1.getPrevCoordinates()[0] == west.getCurCoordinates()[0]) &&
+                                (pipe1.getPrevCoordinates()[1] == west.getCurCoordinates()[1])))) {
+                    pipe1.setCurCoordinates(south.getCurCoordinates());
                 } else if (west != null) {
-                    pipe1.setCurCoords(west.getCurCoords());
+                    pipe1.setCurCoordinates(west.getCurCoordinates());
                 }
                 break;
 
             case 'F':
                 if ((south != null) && ((east == null) ||
-                    ((pipe1.getPrevCoords()[0] == east.getCurCoords()[0]) &&
-                     (pipe1.getPrevCoords()[1] == east.getCurCoords()[1])))) {
-                    pipe1.setCurCoords(south.getCurCoords());
+                        ((pipe1.getPrevCoordinates()[0] == east.getCurCoordinates()[0]) &&
+                                (pipe1.getPrevCoordinates()[1] == east.getCurCoordinates()[1])))) {
+                    pipe1.setCurCoordinates(south.getCurCoordinates());
                 } else if (east != null) {
-                    pipe1.setCurCoords(east.getCurCoords());
+                    pipe1.setCurCoordinates(east.getCurCoordinates());
                 }
                 break;
 
             case 'S':
                 if ((west != null) &&
                         ((west.getPipeType() == 'F') ||
-                         (west.getPipeType() == '-') ||
-                         (west.getPipeType() == 'L'))) {
-                    pipe1.setCurCoords(west.getCurCoords());
+                                (west.getPipeType() == '-') ||
+                                (west.getPipeType() == 'L'))) {
+                    pipe1.setCurCoordinates(west.getCurCoordinates());
                 }
                 else if ((east != null) &&
                         ((east.getPipeType() == '7') ||
-                         (east.getPipeType() == '-') ||
-                         (east.getPipeType() == 'J'))) {
-                    pipe1.setCurCoords(east.getCurCoords());
+                                (east.getPipeType() == '-') ||
+                                (east.getPipeType() == 'J'))) {
+                    pipe1.setCurCoordinates(east.getCurCoordinates());
                 }
                 else if ((north != null) &&
                         ((north.getPipeType() == '7') ||
-                         (north.getPipeType() == '|') ||
-                         (north.getPipeType() == 'F'))) {
-                    pipe1.setCurCoords(north.getCurCoords());
+                                (north.getPipeType() == '|') ||
+                                (north.getPipeType() == 'F'))) {
+                    pipe1.setCurCoordinates(north.getCurCoordinates());
                 }
                 else if (south != null) {
-                    pipe1.setCurCoords(south.getCurCoords());
+                    pipe1.setCurCoordinates(south.getCurCoordinates());
                 }
                 break;
 
@@ -224,272 +301,116 @@ public class Problem10Part2 {
         }
     }
 
-    private void findEnclosedAreas() {
-        for (int i = 1; i < pathHistory.size()-1; i++) {
-            int[] adjacentSpace = isAdjacent(pathHistory.get(i-1), pathHistory.get(i), pathHistory.get(i+1));
-
-            if (adjacentSpace.length > 0) {
-                findEnclosedSpace(adjacentSpace);
-            }
-        }
-
-        // Sort the coordinates by their x value, lowest to highest
-        allEnclosedCoords.sort((Comparator<? super int[]>) (coords1, coords2) -> {
-            // Compare y
-            if (coords1[0] > coords2[0]) {
-                return 1;
-            } else if (coords1[0] < coords2[0]) {
-                return -1;
-            }
-
-            // Compare x if y are the same
-            if (coords1[1] > coords2[1]) {
-                return 1;
-            } else if (coords1[1] < coords2[1]) {
-                return -1;
-            }
-
-            return 0;
-        });
-
-        System.out.println("\nCoordinates of enclosed spaces:");
-        for (var coords : allEnclosedCoords) {
-            System.out.println(Arrays.toString(coords));
-        }
-        System.out.println("\nTOTAL: " + allEnclosedCoords.size());
-    }
-
     /**
-     * Check to see if there's an enclosed space (or potential one)
-     * @param prevLoc the location in the path you just came from
-     * @param curLoc the current location in the path
-     * @param nextLoc the location in the path you'll move to next
-     * @return the first enclosed space location
+     * Check to see if the given coordinate is in the list of coordinates
+     * @param listOfCoordinates the coordinates being checked against
+     * @param incomingCoordinates the coordinates being checked
+     * @return true for yes, false for no
      */
-    private int[] isAdjacent(int[] prevLoc, int[] curLoc, int[] nextLoc) {
-        // Make sure it isn't the previous or next location in the pipe
-        boolean isPrevLoc;
-        boolean isNextLoc;
-
-        // Locations
-        int[] northLoc = new int[] { curLoc[0]-1, curLoc[1] };
-        int[] southLoc = new int[] { curLoc[0]+1, curLoc[1] };
-        int[] eastLoc = new int[] { curLoc[0], curLoc[1]+1 };
-        int[] westLoc = new int[] { curLoc[0], curLoc[1]-1 };
-
-        // North side
-        isPrevLoc = ((northLoc[0] == prevLoc[0]) && (northLoc[1] == prevLoc[1]));
-        isNextLoc = ((northLoc[0] == nextLoc[0]) && (northLoc[1] == nextLoc[1]));
-        boolean northAdj = !isPrevLoc && !isNextLoc;
-
-        // South side
-        isPrevLoc = ((southLoc[0] == prevLoc[0]) && (southLoc[1] == prevLoc[1]));
-        isNextLoc = ((southLoc[0] == nextLoc[0]) && (southLoc[1] == nextLoc[1]));
-        boolean southAdj = !isPrevLoc && !isNextLoc;
-
-        // South side
-        isPrevLoc = ((eastLoc[0] == prevLoc[0]) && (eastLoc[1] == prevLoc[1]));
-        isNextLoc = ((eastLoc[0] == nextLoc[0]) && (eastLoc[1] == nextLoc[1]));
-        boolean eastAdj = !isPrevLoc && !isNextLoc;
-
-        // South side
-        isPrevLoc = ((westLoc[0] == prevLoc[0]) && (westLoc[1] == prevLoc[1]));
-        isNextLoc = ((westLoc[0] == nextLoc[0]) && (westLoc[1] == nextLoc[1]));
-        boolean westAdj = !isPrevLoc && !isNextLoc;
-
-        if (northAdj) {
-            //System.out.println("North Adj: " + Arrays.toString(curLoc));
-            //System.out.println("[" + northLoc[0] + ", " + northLoc[1] + "]");
-            //System.out.println("--");
-            return northLoc;
-        } else if (southAdj) {
-            //System.out.println("South Adj: " + Arrays.toString(curLoc));
-            //System.out.println("[" + southLoc[0] + ", " + southLoc[1] + "]");
-            //System.out.println("--");
-            return southLoc;
-        } else if (eastAdj) {
-            //System.out.println("East Adj: " + Arrays.toString(curLoc));
-            //System.out.println("[" + eastLoc[0] + ", " + eastLoc[1] + "]");
-            //System.out.println("--");
-            return eastLoc;
-        } else if (westAdj) {
-            //System.out.println("West Adj: " + Arrays.toString(curLoc));
-            //System.out.println("[" + westLoc[0] + ", " + westLoc[1] + "]");
-            //System.out.println("--");
-            return westLoc;
-        }
-        return new int[0];
-    }
-
-    private void findEnclosedSpace(int[] firstLoc) {
-        if (hasCoord(allEnclosedCoords, firstLoc) ||
-                (firstLoc[0] < 0) ||
-                (firstLoc[1] < 0) ||
-                (firstLoc[0] > lines.length-1) ||
-                (firstLoc[1] > lines[0].length-1) ||
-                (lines[firstLoc[0]][firstLoc[1]] == '|') ||
-                (lines[firstLoc[0]][firstLoc[1]] == '-')) {
-            return;
-        }
-
-        // Create an arraylist of coords for the enclosed space
-        ArrayList<int[]> enclosedCoords = new ArrayList<>();
-        enclosedCoords.add(firstLoc);
-        //System.out.println(Arrays.toString(firstLoc));
-
-        // Find all coords in the enclosed space
-        for (int i=0; i < enclosedCoords.size(); i++) {
-            // Get the locations in each direction
-            int[] curLoc = enclosedCoords.get(i);
-            int[] north = new int[] { curLoc[0] - 1, curLoc[1] };
-            int[] south = new int[] { curLoc[0] + 1, curLoc[1] };
-            int[] east  = new int[] { curLoc[0], curLoc[1] + 1 };
-            int[] west  = new int[] { curLoc[0], curLoc[1] - 1 };
-
-            if (!hasCoord(pathHistory, north) &&
-                !hasCoord(enclosedCoords, north) &&
-                (curLoc[0]-1 > 0)) {
-                //System.out.printf("%-12s | %s%n", "North", Arrays.toString(north));
-                enclosedCoords.add(north);
-            }
-            if (!hasCoord(pathHistory, south) &&
-                !hasCoord(enclosedCoords, south) &&
-                (curLoc[0]+1 < lines.length)) {
-                //System.out.printf("%-12s | %s%n", "South", Arrays.toString(south));
-                enclosedCoords.add(south);
-            }
-            if (!hasCoord(pathHistory, east) &&
-                !hasCoord(enclosedCoords, east) &&
-                (curLoc[1]+1 < lines[0].length)) {
-                //System.out.printf("%-12s | %s%n", "East", Arrays.toString(east));
-                enclosedCoords.add(east);
-            }
-            if (!hasCoord(pathHistory, west) &&
-                !hasCoord(enclosedCoords, west) &&
-                (curLoc[1]-1 > 0)) {
-                //System.out.printf("%-12s | %s%n", "West", Arrays.toString(west));
-                enclosedCoords.add(west);
-            }
-        }
-
-        if (preventEdges(enclosedCoords) && preventSpillage(enclosedCoords)) {
-            allEnclosedCoords.addAll(enclosedCoords);
-        } else {
-            rejectedCoords.addAll(enclosedCoords);
-        }
-        //System.out.println();
-    }
-
-    /**
-     * Make sure nothing reaches an edge
-     * @param enclosedCoords
-     * @return
-     */
-    private boolean preventEdges(ArrayList<int[]> enclosedCoords) {
-        System.out.println();
-        for (var coord : enclosedCoords) {
-            System.out.println(Arrays.toString(coord));
-            if ((coord[0] <= 0) ||
-                (coord[1] <= 0) ||
-                (coord[0] >= lines.length-1) ||
-                (coord[1] >= lines[0].length-1) ||
-                hasCoord(pathHistory, coord) ||
-                hasCoord(allEnclosedCoords, coord)) {
-                System.out.println("Invalid location found! Removing this location set!");
-                return false;
-            }
-        }
-        System.out.println("No invalid locations found!");
-        return true;
-    }
-
-    /**
-     * Check to make sure the enclosed space can't "leak"
-     * @param enclosedCoords
-     * @return
-     */
-    private boolean preventSpillage(ArrayList<int[]> enclosedCoords) {
-        // Find the coords at the bottom of the enclosed space
-        ArrayList<int[]> highestCoords = new ArrayList<>();
-        for (var coords : enclosedCoords) {
-            // If it's higher, remove previous ones and add these
-            if (!highestCoords.isEmpty() && (highestCoords.get(0)[0] < coords[0])) {
-                highestCoords.clear();
-                highestCoords.add(coords);
-            }
-            // If it's the same, add it
-            else if (!highestCoords.isEmpty() && highestCoords.get(0)[0] == coords[0]) {
-                highestCoords.add(coords);
-            }
-            // If it's empty, just add
-            else if (highestCoords.isEmpty()) {
-                highestCoords.add(coords);
-            }
-        }
-
-        // Sort the coordinates by their x value, lowest to highest
-        highestCoords.sort((Comparator<? super int[]>) (coords1, coords2) -> {
-            if (coords1[1] > coords2[1]) {
-                return 1;
-            } else if (coords1[1] < coords2[1]) {
-                return -1;
-            }
-            return 0;
-        });
-
-        //System.out.println("Sorted coords");
-        //for (var coords : highestCoords) {
-        //    System.out.println(Arrays.toString(coords));
-        //}
-        //System.out.println("End sorted coords\n");
-
-        // Check those coords to make sure there's no set of values where they could spill out
-        for (int i=0; i < highestCoords.size(); i++) {
-            char pipe0 = 'o';
-            char pipe1 = 'o';
-            char pipe2 = 'o';
-
-            if (highestCoords.get(i)[0]+1 < lines.length) {
-                if (highestCoords.get(i)[1]-1 < lines[0].length) {
-                    pipe0 = lines[highestCoords.get(i)[0]+1][highestCoords.get(i)[1]-1];
-
-                    // Check for leaking edge
-
-                }
-                if (highestCoords.get(i)[1] < lines[0].length) {
-                    pipe1 = lines[highestCoords.get(i)[0]+1][highestCoords.get(i)[1]];
-                }
-                if (highestCoords.get(i)[1]+1 < lines[0].length) {
-                    pipe2 = lines[highestCoords.get(i)[0]+1][highestCoords.get(i)[1]+1];
-                }
-            }
-
-            if ((pipe0 == '7' && pipe1 == 'F') ||
-                (pipe1 == '7' && pipe2 == 'F') ||
-
-                (pipe0 == '7' && pipe1 == '|') ||
-                (pipe1 == '7' && pipe2 == '|') ||
-
-                (pipe0 == '7' && pipe1 == 'L') ||
-                (pipe1 == '7' && pipe2 == 'L') ||
-
-                (pipe0 == '|' && pipe1 == 'F') ||
-                (pipe1 == '|' && pipe2 == 'F') ||
-
-                (pipe0 == 'J' && pipe2 == 'F') ||
-                (pipe1 == 'J' && pipe2 == 'F')) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean hasCoord(ArrayList<int[]> listOfCoords, int[] incomingCoords) {
-        for (int[] coords : listOfCoords) {
-            if ((incomingCoords[0] == coords[0]) && (incomingCoords[1] == coords[1])) {
+    private boolean hasCoord(ArrayList<int[]> listOfCoordinates, int[] incomingCoordinates) {
+        for (int[] coordinates : listOfCoordinates) {
+            if ((incomingCoordinates[0] == coordinates[0]) && (incomingCoordinates[1] == coordinates[1])) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Find all locations in the space contained by the pipe.
+     * If it's an invalid location, add it to the rejects.
+     * Otherwise, add it to allEnclosedSpaces
+     * @param firstLoc the first location in the enclosed area
+     */
+    private void findEnclosedArea(int[] firstLoc) {
+        // Create an arraylist of coordinates for the enclosed space
+        ArrayList<int[]> enclosedCoordinates = new ArrayList<>();
+        enclosedCoordinates.add(firstLoc);
+
+        // Find all coordinates in the enclosed space
+        for (int i=0; i < enclosedCoordinates.size(); i++) {
+            checkSurroundings(enclosedCoordinates, enclosedCoordinates.get(i));
+        }
+
+        // Sort the coordinates by their x value, lowest to highest
+        enclosedCoordinates.sort((Comparator<? super int[]>) (coordinates1, coordinates2) -> {
+            // Compare y
+            if (coordinates1[0] > coordinates2[0]) {
+                return 1;
+            } else if (coordinates1[0] < coordinates2[0]) {
+                return -1;
+            }
+
+            // Compare x if y are the same
+            if (coordinates1[1] > coordinates2[1]) {
+                return 1;
+            } else if (coordinates1[1] < coordinates2[1]) {
+                return -1;
+            }
+
+            // Same location (not possible outcome)
+            return 0;
+        });
+
+        if (preventEdges(enclosedCoordinates)) {
+            enclosedCoordinates.removeIf(coordinates -> (lines[coordinates[0]][coordinates[1]] == '*'));
+            allEnclosedCoordinates.addAll(enclosedCoordinates);
+        } else {
+            rejectedCoordinates.addAll(enclosedCoordinates);
+        }
+    }
+
+    /**
+     * Check the up, down, left, right spots around a coordinate
+     * @param enclosedCoordinates the area the coordinates are added to
+     * @param curLoc the current location being checked for space around it
+     */
+    private void checkSurroundings(ArrayList<int[]> enclosedCoordinates, int[] curLoc) {
+        int[] north = new int[] { curLoc[0] - 1, curLoc[1] };
+        if (!hasCoord(pathHistory, north) &&
+                !hasCoord(enclosedCoordinates, north) &&
+                (curLoc[0]-1 > 0)) {
+            enclosedCoordinates.add(north);
+        }
+
+        int[] south = new int[] { curLoc[0] + 1, curLoc[1] };
+        if (!hasCoord(pathHistory, south) &&
+                !hasCoord(enclosedCoordinates, south) &&
+                (curLoc[0]+1 < lines.length)) {
+            enclosedCoordinates.add(south);
+        }
+
+        int[] east  = new int[] { curLoc[0], curLoc[1] + 1 };
+        if (!hasCoord(pathHistory, east) &&
+                !hasCoord(enclosedCoordinates, east) &&
+                (curLoc[1]+1 < lines[0].length)) {
+            enclosedCoordinates.add(east);
+        }
+
+        int[] west  = new int[] { curLoc[0], curLoc[1] - 1 };
+        if (!hasCoord(pathHistory, west) &&
+                !hasCoord(enclosedCoordinates, west) &&
+                (curLoc[1]-1 > 0)) {
+            enclosedCoordinates.add(west);
+        }
+    }
+
+    /**
+     * Make sure nothing reaches an edge
+     * @param enclosedCoordinates the list of coordinates being checked for edge values
+     * @return true for if there's no edges found, false for if there's at least one
+     */
+    private boolean preventEdges(ArrayList<int[]> enclosedCoordinates) {
+        for (var coord : enclosedCoordinates) {
+            if ((coord[0] <= 0) ||
+                    (coord[1] <= 0) ||
+                    (coord[0] >= lines.length-1) ||
+                    (coord[1] >= lines[0].length-1) ||
+                    hasCoord(pathHistory, coord) ||
+                    hasCoord(allEnclosedCoordinates, coord)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
