@@ -5,6 +5,7 @@ import solutions.problem1.Problem1Part2;
 import solutions.problem1.Problem1Part2_SUPERIOR;
 import solutions.problem10.Problem10Part1;
 import solutions.problem10.Problem10Part2;
+import solutions.problem10.Problem10Part2_REWORK;
 import solutions.problem11.Problem11Part1;
 import solutions.problem2.Problem2Part1;
 import solutions.problem2.Problem2Part2;
@@ -66,7 +67,8 @@ public class Main {
         //new Problem9Part2();
 
         //new Problem10Part1();
-        new Problem10Part2();
+        //new Problem10Part2();
+        new Problem10Part2_REWORK();
 
         //new Problem11Part1();
         //new Problem11Part2();
