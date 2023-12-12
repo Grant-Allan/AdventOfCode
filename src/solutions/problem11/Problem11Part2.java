@@ -32,7 +32,6 @@ public class Problem11Part2 {
             ArrayList<String> lines = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 lines.add(scanner.nextLine());
-                //System.out.println(lines.get(lines.size()-1));
             }
 
             // Build the 2D char array
@@ -73,16 +72,6 @@ public class Problem11Part2 {
                 }
                 System.out.println();
             }
-
-            //System.out.println("\nEmpty Rows: ");
-            //for (int r : emptyRows) {
-            //    System.out.println(r);
-            //}
-
-            //.out.println("\nEmpty Columns: ");
-            //for (int c : emptyColumns) {
-            //    System.out.println(c);
-            //}
 
             System.out.println("\n\nTOTAL: " + getTotal());
 

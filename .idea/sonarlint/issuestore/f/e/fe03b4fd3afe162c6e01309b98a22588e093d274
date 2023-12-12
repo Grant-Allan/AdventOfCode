@@ -1,62 +1,64 @@
 
-]	java:S125%"<This block of commented-out lines of code should be removed.(Äê›Ğıÿÿÿÿ8ÆµØÖÄ1
-X	java:S125)"<This block of commented-out lines of code should be removed.(€ˆìˆ8ÇµØÖÄ1
-X	java:S125,"<This block of commented-out lines of code should be removed.(äØ³½8ÇµØÖÄ1
-X	java:S1250"<This block of commented-out lines of code should be removed.(ü¬›8ÇµØÖÄ1
-X	java:S1254"<This block of commented-out lines of code should be removed.(ğ‘ç¡8ÇµØÖÄ1
-]	java:S1258"<This block of commented-out lines of code should be removed.(¦ª¯„üÿÿÿÿ8ÇµØÖÄ1
-X	java:S125;"<This block of commented-out lines of code should be removed.(˜É±°8ÇµØÖÄ1
-]	java:S125>"<This block of commented-out lines of code should be removed.(›­†Àıÿÿÿÿ8ÇµØÖÄ1
-]	java:S125A"<This block of commented-out lines of code should be removed.(ş€Òîûÿÿÿÿ8 ÖÔÅ1
-]	java:S125D"<This block of commented-out lines of code should be removed.(Ş°•ìúÿÿÿÿ8 ÖÔÅ1
-X	java:S125G"<This block of commented-out lines of code should be removed.(Š€‡8À²áÔÅ1
-L	java:S106u"+Replace this use of System.out by a logger.(…÷Æ÷øÿÿÿÿ8¨şÒÖÄ1
+]	java:S125&"<This block of commented-out lines of code should be removed.(Äê›Ğıÿÿÿÿ8‰¾¶úÅ1
+X	java:S125*"<This block of commented-out lines of code should be removed.(€ˆìˆ8‰¾¶úÅ1
+X	java:S125-"<This block of commented-out lines of code should be removed.(äØ³½8‰¾¶úÅ1
+X	java:S1251"<This block of commented-out lines of code should be removed.(ü¬›8‰¾¶úÅ1
+X	java:S1255"<This block of commented-out lines of code should be removed.(ğ‘ç¡8‰¾¶úÅ1
+]	java:S1259"<This block of commented-out lines of code should be removed.(¦ª¯„üÿÿÿÿ8‰¾¶úÅ1
+X	java:S125<"<This block of commented-out lines of code should be removed.(˜É±°8‰¾¶úÅ1
+]	java:S125?"<This block of commented-out lines of code should be removed.(›­†Àıÿÿÿÿ8‰¾¶úÅ1
+]	java:S125B"<This block of commented-out lines of code should be removed.(ş€Òîûÿÿÿÿ8‰¾¶úÅ1
+]	java:S125E"<This block of commented-out lines of code should be removed.(Ş°•ìúÿÿÿÿ8‰¾¶úÅ1
+X	java:S125H"<This block of commented-out lines of code should be removed.(Š€‡8·‰µüÅ1
+L	java:S106v"+Replace this use of System.out by a logger.(…÷Æ÷øÿÿÿÿ8¨şÒÖÄ1
 _
-java:S1128"=Remove this unused import 'solutions.problem1.Problem1Part1'.(ª¼ûùÿÿÿÿ8ÈµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem1.Problem1Part1'.(ª¼ûùÿÿÿÿ8¢£µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem1.Problem1Part2'.(°¿¡½ÿÿÿÿÿ8ÈµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem1.Problem1Part2'.(°¿¡½ÿÿÿÿÿ8¢£µüÅ1
 b
-java:S1128"FRemove this unused import 'solutions.problem1.Problem1Part2_SUPERIOR'.(ÎË¤u8ÈµØÖÄ1
+java:S1128"FRemove this unused import 'solutions.problem1.Problem1Part2_SUPERIOR'.(ÎË¤u8¢£µüÅ1
 [
-java:S1128"?Remove this unused import 'solutions.problem10.Problem10Part1'.(ºÅøN8˜ ÖÔÅ1
+java:S1128"?Remove this unused import 'solutions.problem10.Problem10Part1'.(ºÅøN8¢£µüÅ1
 \
-java:S1128"?Remove this unused import 'solutions.problem11.Problem11Part1'.(¾ˆªÄ8Ã²áÔÅ1
+java:S1128"?Remove this unused import 'solutions.problem10.Problem10Part2'.(Ÿ¤‚8¢£µüÅ1
+\
+java:S1128"?Remove this unused import 'solutions.problem11.Problem11Part1'.(¾ˆªÄ8¢£µüÅ1
 _
-java:S1128	"=Remove this unused import 'solutions.problem2.Problem2Part1'.(¸†Œéùÿÿÿÿ8ÈµØÖÄ1
-Z
 java:S1128
-"=Remove this unused import 'solutions.problem2.Problem2Part2'.(´úè˜8ÈµØÖÄ1
+"=Remove this unused import 'solutions.problem2.Problem2Part1'.(¸†Œéùÿÿÿÿ8¢£µüÅ1
 Z
-java:S1128"=Remove this unused import 'solutions.problem3.Problem3Part1'.(¥Ê”8ÈµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem2.Problem2Part2'.(´úè˜8¢£µüÅ1
+Z
+java:S1128"=Remove this unused import 'solutions.problem3.Problem3Part1'.(¥Ê”8¢£µüÅ1
 e
-java:S1128"CRemove this unused import 'solutions.problem3.Problem3Part1_MESSY'.(½Å´Ÿüÿÿÿÿ8ÈµØÖÄ1
+java:S1128"CRemove this unused import 'solutions.problem3.Problem3Part1_MESSY'.(½Å´Ÿüÿÿÿÿ8¢£µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem3.Problem3Part2'.(ƒç˜ıÿÿÿÿ8ÈµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem3.Problem3Part2'.(ƒç˜ıÿÿÿÿ8¢£µüÅ1
 Z
-java:S1128"=Remove this unused import 'solutions.problem4.Problem4Part1'.(Ë–ß8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem4.Problem4Part1'.(Ë–ß8¢£µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem4.Problem4Part2'.(òĞœÃşÿÿÿÿ8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem4.Problem4Part2'.(òĞœÃşÿÿÿÿ8¢£µüÅ1
 i
-java:S1128"GRemove this unused import 'solutions.problem4.Problem4Part2_EFFICIENT'.(š³’ºıÿÿÿÿ8ÉµØÖÄ1
+java:S1128"GRemove this unused import 'solutions.problem4.Problem4Part2_EFFICIENT'.(š³’ºıÿÿÿÿ8¢£µüÅ1
 Z
-java:S1128"=Remove this unused import 'solutions.problem5.Problem5Part1'.(ŠäıÚ8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem5.Problem5Part1'.(ŠäıÚ8¢£µüÅ1
 Z
-java:S1128"=Remove this unused import 'solutions.problem5.Problem5Part2'.(ƒµ”8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem5.Problem5Part2'.(ƒµ”8¢£µüÅ1
 i
-java:S1128"GRemove this unused import 'solutions.problem5.Problem5Part2_EFFICIENT'.(´¸ú»ÿÿÿÿÿ8ÉµØÖÄ1
+java:S1128"GRemove this unused import 'solutions.problem5.Problem5Part2_EFFICIENT'.(´¸ú»ÿÿÿÿÿ8¢£µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part1'.(ıÊ—İÿÿÿÿÿ8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part1'.(ıÊ—İÿÿÿÿÿ8¢£µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part2'.(Øÿü×şÿÿÿÿ8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem6.Problem6Part2'.(Øÿü×şÿÿÿÿ8¢£µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part1'.(ß¿Ùáÿÿÿÿÿ8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part1'.(ß¿Ùáÿÿÿÿÿ8££µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part2'.(ğÏÃŒıÿÿÿÿ8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem7.Problem7Part2'.(ğÏÃŒıÿÿÿÿ8££µüÅ1
 Z
-java:S1128"=Remove this unused import 'solutions.problem8.Problem8Part1'.(»’ÕÏ8ÉµØÖÄ1
+java:S1128"=Remove this unused import 'solutions.problem8.Problem8Part1'.(»’ÕÏ8££µüÅ1
 _
-java:S1128"=Remove this unused import 'solutions.problem8.Problem8Part2'.(ˆ‚£øÿÿÿÿ8› ÖÔÅ1
+java:S1128"=Remove this unused import 'solutions.problem8.Problem8Part2'.(ˆ‚£øÿÿÿÿ8££µüÅ1
 Z
-java:S1128"=Remove this unused import 'solutions.problem9.Problem9Part1'.(ÈöĞ¨8› ÖÔÅ1
+java:S1128"=Remove this unused import 'solutions.problem9.Problem9Part1'.(ÈöĞ¨8££µüÅ1
 Z
-java:S1128"=Remove this unused import 'solutions.problem9.Problem9Part2'.(¹Ùê«8› ÖÔÅ1
+java:S1128"=Remove this unused import 'solutions.problem9.Problem9Part2'.(¹Ùê«8££µüÅ1
