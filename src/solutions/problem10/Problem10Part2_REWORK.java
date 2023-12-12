@@ -268,43 +268,81 @@ public class Problem10Part2_REWORK {
 
         // Find all coords in the enclosed space
         for (int i=0; i < enclosedCoords.size(); i++) {
-            // Get the locations in each direction
-            int[] curLoc = enclosedCoords.get(i);
-            int[] north = new int[] { curLoc[0] - 1, curLoc[1] };
-            int[] south = new int[] { curLoc[0] + 1, curLoc[1] };
-            int[] east  = new int[] { curLoc[0], curLoc[1] + 1 };
-            int[] west  = new int[] { curLoc[0], curLoc[1] - 1 };
+            checkSurroundings(enclosedCoords, enclosedCoords.get(i));
+        }
 
-            if (!hasCoord(pathHistory, north) &&
-                !hasCoord(enclosedCoords, north) &&
-                (curLoc[0]-1 > 0)) {
-                //System.out.printf("%-12s | %s%n", "North", Arrays.toString(north));
-                enclosedCoords.add(north);
+        // Sort the coordinates by their x value, lowest to highest
+        enclosedCoords.sort((Comparator<? super int[]>) (coords1, coords2) -> {
+            // Compare y
+            if (coords1[0] > coords2[0]) {
+                return 1;
+            } else if (coords1[0] < coords2[0]) {
+                return -1;
             }
-            if (!hasCoord(pathHistory, south) &&
-                !hasCoord(enclosedCoords, south) &&
-                (curLoc[0]+1 < lines.length)) {
-                //System.out.printf("%-12s | %s%n", "South", Arrays.toString(south));
-                enclosedCoords.add(south);
+
+            // Compare x if y are the same
+            if (coords1[1] > coords2[1]) {
+                return 1;
+            } else if (coords1[1] < coords2[1]) {
+                return -1;
             }
-            if (!hasCoord(pathHistory, east) &&
-                !hasCoord(enclosedCoords, east) &&
-                (curLoc[1]+1 < lines[0].length)) {
-                //System.out.printf("%-12s | %s%n", "East", Arrays.toString(east));
-                enclosedCoords.add(east);
-            }
-            if (!hasCoord(pathHistory, west) &&
-                !hasCoord(enclosedCoords, west) &&
-                (curLoc[1]-1 > 0)) {
-                //System.out.printf("%-12s | %s%n", "West", Arrays.toString(west));
-                enclosedCoords.add(west);
-            }
+
+            // Same location (not possible outcome)
+            return 0;
+        });
+
+        // Print enclosed coords
+        System.out.println("Enclosed Coords:");
+        for (var coords : enclosedCoords) {
+            System.out.println(Arrays.toString(coords));
         }
 
         if (preventEdges(enclosedCoords) && preventSpillage(enclosedCoords)) {
+            System.out.println("Accepted!");
             allEnclosedCoords.addAll(enclosedCoords);
         } else {
+            System.out.println("Rejected!");
             rejectedCoords.addAll(enclosedCoords);
+        }
+        System.out.println();
+    }
+
+    /**
+     * Check the up, down, left, right spots around a coordinate
+     * @param enclosedCoords
+     * @param curLoc
+     */
+    private void checkSurroundings(ArrayList<int[]> enclosedCoords, int[] curLoc) {
+        int[] north = new int[] { curLoc[0] - 1, curLoc[1] };
+        if (!hasCoord(pathHistory, north) &&
+            !hasCoord(enclosedCoords, north) &&
+            (curLoc[0]-1 > 0)) {
+            //System.out.printf("%-12s | %s%n", "North", Arrays.toString(north));
+            enclosedCoords.add(north);
+        }
+
+        int[] south = new int[] { curLoc[0] + 1, curLoc[1] };
+        if (!hasCoord(pathHistory, south) &&
+            !hasCoord(enclosedCoords, south) &&
+            (curLoc[0]+1 < lines.length)) {
+            //System.out.printf("%-12s | %s%n", "South", Arrays.toString(south));
+            enclosedCoords.add(south);
+        }
+
+        int[] east  = new int[] { curLoc[0], curLoc[1] + 1 };
+        if (!hasCoord(pathHistory, east) &&
+            !hasCoord(enclosedCoords, east) &&
+            (curLoc[1]+1 < lines[0].length)) {
+            //System.out.printf("%-12s | %s%n", "East", Arrays.toString(east));
+            enclosedCoords.add(east);
+        }
+
+        int[] west  = new int[] { curLoc[0], curLoc[1] - 1 };
+        if (!hasCoord(pathHistory, west) &&
+            !hasCoord(enclosedCoords, west) &&
+            (curLoc[1]-1 > 0)) {
+            //System.out.printf("%-12s | %s%n", "West", Arrays.toString(west));
+            enclosedCoords.add(west);
         }
     }
 
@@ -318,11 +356,11 @@ public class Problem10Part2_REWORK {
         for (var coord : enclosedCoords) {
             //System.out.println(Arrays.toString(coord));
             if ((coord[0] <= 0) ||
-                    (coord[1] <= 0) ||
-                    (coord[0] >= lines.length-1) ||
-                    (coord[1] >= lines[0].length-1) ||
-                    hasCoord(pathHistory, coord) ||
-                    hasCoord(allEnclosedCoords, coord)) {
+                (coord[1] <= 0) ||
+                (coord[0] >= lines.length-1) ||
+                (coord[1] >= lines[0].length-1) ||
+                hasCoord(pathHistory, coord) ||
+                hasCoord(allEnclosedCoords, coord)) {
                 //System.out.println("Invalid location found! Removing this location set!");
                 return false;
             }
@@ -391,29 +429,70 @@ public class Problem10Part2_REWORK {
                 if (pipe2Coords[1] < lines[0].length) {
                     pipe2 = lines[pipe2Coords[0]][pipe2Coords[1]];
                 }
+            } else {
+                return false;
             }
 
             if (!((hasCoord(pathHistory, pipe0Coords) || hasCoord(allEnclosedCoords, pipe0Coords)) &&
                   (hasCoord(pathHistory, pipe1Coords) || hasCoord(allEnclosedCoords, pipe1Coords)) &&
-                  (hasCoord(pathHistory, pipe2Coords) || hasCoord(allEnclosedCoords, pipe2Coords))) ||
+                  (hasCoord(pathHistory, pipe2Coords) || hasCoord(allEnclosedCoords, pipe2Coords)))) {
+                return false;
+            }
 
-                (pipe0 == '7' && pipe1 == 'F') ||
-                (pipe1 == '7' && pipe2 == 'F') ||
+            if ((pipe0 == '7' && pipe1 == 'F') ||
+                (pipe1 == '7' && pipe2 == 'F') &&
+                    (!tracePipe(pipe0Coords, pipe1Coords) || !tracePipe(pipe1Coords, pipe2Coords))) {
+                return false;
+            }
 
-                (pipe0 == '7' && pipe1 == '|') ||
-                (pipe1 == '7' && pipe2 == '|') ||
+            if ((pipe0 == '7' && pipe1 == '|') ||
+                (pipe1 == '7' && pipe2 == '|') &&
+                    (!tracePipe(pipe0Coords, pipe1Coords) || !tracePipe(pipe1Coords, pipe2Coords))) {
+                return false;
+            }
 
-                (pipe0 == '7' && pipe1 == 'L') ||
-                (pipe1 == '7' && pipe2 == 'L') ||
+            if ((pipe0 == '7' && pipe1 == 'L') ||
+                (pipe1 == '7' && pipe2 == 'L') &&
+                    (!tracePipe(pipe0Coords, pipe1Coords) || !tracePipe(pipe1Coords, pipe2Coords))) {
+                return false;
+            }
 
-                (pipe0 == '|' && pipe1 == 'F') ||
-                (pipe1 == '|' && pipe2 == 'F') ||
+            if ((pipe0 == '|' && pipe1 == 'F') ||
+                (pipe1 == '|' && pipe2 == 'F') &&
+                    (!tracePipe(pipe0Coords, pipe1Coords) || !tracePipe(pipe1Coords, pipe2Coords))) {
+                return false;
+            }
 
-                (pipe0 == 'J' && pipe2 == 'F') ||
-                (pipe1 == 'J' && pipe2 == 'F')) {
+            if ((pipe0 == 'J' && pipe2 == 'F') ||
+                (pipe1 == 'J' && pipe2 == 'F') &&
+                    (!tracePipe(pipe0Coords, pipe1Coords) || !tracePipe(pipe1Coords, pipe2Coords))) {
                 return false;
             }
         }
         return true;
+    }
+
+    /**
+     * Trace a potential leak to see if it catches itself
+     * @param loc1
+     * @param loc2
+     * @return returns true for if it does, false for if not
+     */
+    private boolean tracePipe(int[] loc1, int[] loc2) {
+        do {
+            char pipe1 = lines[loc1[0]][loc1[1]];
+            char pipe2 = lines[loc2[0]][loc2[1]];
+
+            if ((pipe1 == 'L' && pipe2 == 'J') ||
+                (pipe1 == 'L' && pipe2 == '-') ||
+                (pipe1 == '_' && pipe2 == '-') ||
+                (pipe1 == '_' && pipe2 == 'J')) {
+                return true;
+            }
+
+            loc1[0]++;
+            loc1[1]++;
+        } while (loc1[0] < lines.length);
+        return false;
     }
 }
