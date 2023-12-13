@@ -7,6 +7,7 @@ import solutions.problem10.Problem10Part1;
 import solutions.problem10.Problem10Part2;
 import solutions.problem11.Problem11Part1;
 import solutions.problem11.Problem11Part2;
+import solutions.problem12.Problem12Part1;
 import solutions.problem2.Problem2Part1;
 import solutions.problem2.Problem2Part2;
 import solutions.problem3.Problem3Part1;
@@ -70,7 +71,10 @@ public class Main {
         //new Problem10Part2();
 
         //new Problem11Part1();
-        new Problem11Part2();
+        //new Problem11Part2();
+
+        new Problem12Part1();
+        //new Problem12Part2();
 
         // Get the time taken for the program to run
         long endTime = System.currentTimeMillis();
