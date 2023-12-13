@@ -77,3 +77,7 @@ K
 resources/Problem6Input.txt,4\6\46c10d0288a94cb465de47726c6d526dedd07a4b
 [
 +src/solutions/problem11/Problem11Part2.java,0\f\0f71c05e44a9cce9a4439153d0a0ac38b66b28d0
+L
+resources/Problem12Input.txt,c\7\c7364642eff749eaecd9e3b19670818a2617021c
+[
++src/solutions/problem12/Problem12Part1.java,f\e\fe323a5aedf4d48cef6b9b3c284b29eaef922e51
