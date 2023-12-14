@@ -14,7 +14,16 @@ import java.util.Scanner;
  * Answer is
  *
  * not
+ * 9541 - too high
+ * 9537 - too high
+ * 9071 - too high
  * 9059 - too high
+ *
+ * 8751
+ *
+ * 7111
+ *
+ * 3253 - too low
  */
 public class Problem12Part1 {
     /** Constructor */
@@ -39,32 +48,16 @@ public class Problem12Part1 {
             // Go through each line and figure out how many configurations are possible
             int total = 0;
             for (var line : lines.entrySet()) {
-                String hotSprings = line.getKey() + ".";
+                String hotSprings = "..." + line.getKey() + "...";
                 int[] sizes = line.getValue();
                 System.out.println(hotSprings + " -> " + Arrays.toString(sizes));
 
-                // Find any spots that demand a specific number
-                for (int i=0; i < sizes.length; i++) {
-                    String find = buildStringOf('#', sizes[i]);
-                    if (occurrencesOfIn(find, hotSprings) == 1) {
-                        hotSprings = replaceFirst(hotSprings, find);
-                        sizes[i] = -1;
-                    }
-                }
-                String adjusted = hotSprings.replace('?', '#');
-                for (int i=0; i < sizes.length; i++) {
-                    String find = buildStringOf('#', sizes[i]);
-                    if (occurrencesOfIn(find, adjusted) == 1) {
-                        hotSprings = replaceFirstAdjusted(hotSprings, find);
-                        sizes[i] = -1;
-                    }
-                }
-
                 // Search for the possible permutations of remaining numbers
-                System.out.println(hotSprings + " -> " + Arrays.toString(sizes));
-                int smallTotal = findPermutations(sizes, 0, hotSprings+".", 0);
+                int smallTotal = findPermutations(sizes, 0, hotSprings, 3);
+
                 System.out.println("Small Total: " + smallTotal);
                 System.out.println();
+
                 total += smallTotal;
             }
 
@@ -75,6 +68,21 @@ public class Problem12Part1 {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Find the index of a given value in an array
+     * @param array the array being searched
+     * @param value the value being searched for
+     * @return the index (-1 for not found)
+     */
+    private int findIndexOf(int[] array, int value) {
+        for (int i=0; i < array.length; i++) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -93,40 +101,35 @@ public class Problem12Part1 {
     }
 
     /**
-     * Find the number of occurrences of a given string in a given line.
-     * Overlap is allowed.
-     *
-     * @param find the string being searched for
-     * @param line the line being searched in
-     * @return the number of occurrences
+     * Count the number of times a given character appears in a string
+     * @return
      */
-    private int occurrencesOfIn(String find, String line) {
+    public int countChar(String substring) {
         int count = 0;
-        for (int i=0; i <= line.length()-find.length(); i++) {
-            if (find.equals(line.substring(i, i + find.length()))) {
+        for (int i=0; i < substring.length(); i++) {
+            if (substring.charAt(i) == '#') {
                 count++;
+            }
+            else if (substring.charAt(i) == '.') {
+                return -1;
             }
         }
         return count;
     }
 
     /**
-     * Find and replace the first instance of something in a string.
-     * Meant to work when that "first instance" is the only instance.
-     * @param line
-     * @param find
-     * @return the updated line
+     * Find the largest value in a given array
+     * @param array
+     * @return
      */
-    private String replaceFirst(String line, String find) {
-        for (int i=0; i <= line.length()-find.length(); i++) {
-            if (find.equals(line.substring(i, i + find.length()))) {
-                return (new StringBuilder(line))
-                        .replace(i, i+find.length(), buildStringOf('-', find.length()))
-                        .replace(i+find.length(), i+find.length()+1, ".")
-                        .toString();
+    static int largest(int[] array) {
+        int max = 0;
+        for (int i=1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
             }
         }
-        return line;
+        return max;
     }
 
     /**
@@ -136,10 +139,12 @@ public class Problem12Part1 {
      * @param find
      * @return the updated line
      */
-    private String replaceFirstAdjusted(String line, String find) {
-        String adjusted = line.replace('?', '#');
-        for (int i=0; i <= adjusted.length()-find.length(); i++) {
-            if (find.equals(adjusted.substring(i, i + find.length()))) {
+    private String replaceFirst(String line, String find, int tagsFound) {
+        for (int i=0; i <= line.length()-find.length(); i++) {
+            String fullSubstring = line.substring(i, i + find.length());
+            if ((countChar(fullSubstring) == tagsFound) &&
+                fullSubstring.matches("[#|?]{"+find.length()+"}") &&
+                line.substring(i+find.length(), i+find.length()+1).matches("[?|.]")) {
                 return (new StringBuilder(line))
                         .replace(i, i+find.length(), buildStringOf('-', find.length()))
                         .replace(i+find.length(), i+find.length()+1, ".")
@@ -159,21 +164,34 @@ public class Problem12Part1 {
      */
     private int findPermutations(int[] sizes, int curSize, String hotSprings, int startingPoint) {
         if (curSize >= sizes.length) {
-            System.out.println("At " + curSize + " so increasing by 1");
+            //System.out.println(hotSprings + " end of permutation");
             return 1;
         } else if (sizes[curSize] == -1) {
             return findPermutations(sizes, curSize+1, hotSprings, startingPoint);
         }
 
         int count = 0;
-        for (int j=startingPoint; j <= hotSprings.length()-sizes[curSize]; j++) {
+        for (int j=startingPoint; j <= hotSprings.length()-sizes[curSize]-3; j++) {
             String updatedHotSprings = hotSprings;
-            if (updatedHotSprings
+
+            //TODO: current problem child:
+            // ...?#?#????#??.???##???... -> [1, 1, 3, 1, 2, 2]
+
+            boolean onlyViable = countChar(hotSprings.substring(j, j+sizes[curSize])) > largest(Arrays.copyOfRange(sizes, curSize, sizes.length));
+
+            boolean hasSpaceBefore = updatedHotSprings
+                    .substring(j+-1, j)
+                    .matches("[?|.]");
+
+            boolean canContain = updatedHotSprings
                     .substring(j, j+sizes[curSize])
-                    .matches("[#|?]{"+sizes[curSize]+"}") &&
-                    updatedHotSprings
+                    .matches("[#|?]{"+sizes[curSize]+"}");
+
+            boolean hasSpaceAfter = updatedHotSprings
                             .substring(j+sizes[curSize], j+sizes[curSize]+1)
-                            .matches("[?|.]")) {
+                            .matches("[?|.]");
+
+            if (onlyViable || (hasSpaceBefore && canContain && hasSpaceAfter)) {
                 // Replace the section
                 updatedHotSprings = (new StringBuilder(updatedHotSprings))
                         .replace(j, j+sizes[curSize], buildStringOf('-', sizes[curSize]))
@@ -181,8 +199,16 @@ public class Problem12Part1 {
                         .toString();
 
                 // Run for the next size in the series
-                System.out.println(updatedHotSprings + " curSize " + curSize + " just placed: " + sizes[curSize] + " at " + j);
+                if (curSize+1 == sizes.length) {
+                    System.out.println(updatedHotSprings + " curSize " + curSize + " just placed: " + sizes[curSize] + " at " + j +
+                            " (" + onlyViable + " "  + hasSpaceBefore + " " + canContain + " " + hasSpaceAfter + " " + (hotSprings.charAt(j) == '#') + ")");
+                }
                 count += findPermutations(sizes, curSize+1, updatedHotSprings, j);
+
+                // If this was forced into this location, only allow it to exist in this location
+                if (onlyViable && (hotSprings.charAt(j) == '#')) {
+                    break;
+                }
             }
         }
         return count;
