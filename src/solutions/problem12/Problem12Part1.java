@@ -21,6 +21,8 @@ import java.util.Scanner;
  *
  * 8751
  *
+ * 8110
+ *
  * 7111
  *
  * 3253 - too low
@@ -174,23 +176,22 @@ public class Problem12Part1 {
         for (int j=startingPoint; j <= hotSprings.length()-sizes[curSize]-3; j++) {
             String updatedHotSprings = hotSprings;
 
-            //TODO: current problem child:
-            // ...?#?#????#??.???##???... -> [1, 1, 3, 1, 2, 2]
+            // If it's the only place the string can go
+            boolean onlyViable = countChar(hotSprings.substring(j, j+sizes[curSize])) > largest(Arrays.copyOfRange(sizes, curSize, sizes.length)) ||
+                    updatedHotSprings.substring(j, j+sizes[curSize]).matches("#{"+sizes[curSize]+"}");
 
-            boolean onlyViable = countChar(hotSprings.substring(j, j+sizes[curSize])) > largest(Arrays.copyOfRange(sizes, curSize, sizes.length));
-
+            // Can be placed at this spot
             boolean hasSpaceBefore = updatedHotSprings
                     .substring(j+-1, j)
                     .matches("[?|.]");
-
             boolean canContain = updatedHotSprings
                     .substring(j, j+sizes[curSize])
                     .matches("[#|?]{"+sizes[curSize]+"}");
-
             boolean hasSpaceAfter = updatedHotSprings
                             .substring(j+sizes[curSize], j+sizes[curSize]+1)
                             .matches("[?|.]");
 
+            // If it can (or must) be placed at this spot
             if (onlyViable || (hasSpaceBefore && canContain && hasSpaceAfter)) {
                 // Replace the section
                 updatedHotSprings = (new StringBuilder(updatedHotSprings))
@@ -200,8 +201,7 @@ public class Problem12Part1 {
 
                 // Run for the next size in the series
                 if (curSize+1 == sizes.length) {
-                    System.out.println(updatedHotSprings + " curSize " + curSize + " just placed: " + sizes[curSize] + " at " + j +
-                            " (" + onlyViable + " "  + hasSpaceBefore + " " + canContain + " " + hasSpaceAfter + " " + (hotSprings.charAt(j) == '#') + ")");
+                    System.out.println(updatedHotSprings + " " + onlyViable + " "  + hasSpaceBefore + " " + canContain + " " + hasSpaceAfter + " " + (hotSprings.charAt(j) == '#'));
                 }
                 count += findPermutations(sizes, curSize+1, updatedHotSprings, j);
 
