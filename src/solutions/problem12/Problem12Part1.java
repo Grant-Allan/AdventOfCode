@@ -2,30 +2,18 @@ package solutions.problem12;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Solution to problem twelve, part one of Advent of Code.
  * https://adventofcode.com/2023/day/12
  *
  * Answer is
- *
- * not
- * 9541 - too high
- * 9537 - too high
- * 9071 - too high
- * 9059 - too high
- *
- * 8751
- *
- * 8110
- *
- * 7111
- *
- * 3253 - too low
  */
 public class Problem12Part1 {
     /** Constructor */
@@ -47,23 +35,17 @@ public class Problem12Part1 {
             }
             System.out.println();
 
-            // Go through each line and figure out how many configurations are possible
-            int total = 0;
+            // Process them
+            long total = 0;
             for (var line : lines.entrySet()) {
-                String hotSprings = "..." + line.getKey() + "...";
-                int[] sizes = line.getValue();
-                System.out.println(hotSprings + " -> " + Arrays.toString(sizes));
-
-                // Search for the possible permutations of remaining numbers
-                int smallTotal = findPermutations(sizes, 0, hotSprings, 3);
-
-                System.out.println("Small Total: " + smallTotal);
                 System.out.println();
-
-                total += smallTotal;
+                System.out.println("Line: " + line.getKey());
+                int count = processLine(3, ".." + line.getKey() + "..", line.getValue());
+                System.out.println("Count: " + count);
+                total += count;
             }
 
-            System.out.println("\n\nFinal Total: " + total);
+            System.out.println("\n\nTOTAL: " + total);
 
             scanner.close();
         } catch (FileNotFoundException e) {
@@ -72,19 +54,61 @@ public class Problem12Part1 {
         }
     }
 
-    /**
-     * Find the index of a given value in an array
-     * @param array the array being searched
-     * @param value the value being searched for
-     * @return the index (-1 for not found)
-     */
-    private int findIndexOf(int[] array, int value) {
-        for (int i=0; i < array.length; i++) {
-            if (array[i] == value) {
-                return i;
+    private int processLine(Integer start, String line, int[] sizes) {
+        int count = 0;
+
+        //
+        // Need to make it cascade the changes, like with the old version
+        // That is, find every possible permutation. Which it doesn't right now.
+        //
+
+        // Process the sizes
+        String updatedLine = line;
+        for (int size : sizes) {
+            updatedLine = processSize(start, updatedLine, size);
+        }
+
+        // Check to see whether this was a valid combination
+        count += (updatedLine.contains("#")) ? 0 : 1;
+        if (count == 1) {
+            System.out.println(updatedLine);
+        }
+
+        // Check to see if the end of the line has been reached
+        if (start < line.length()) {
+            count += processLine(++start, line, sizes);
+        }
+
+        return count;
+    }
+
+    private String processSize(Integer start, String line, int size) {
+        //
+        // Need to check to see if there was or wasn't a valid spot. Otherwise,
+        // it doesn't know if not all sizes could be placed
+        //
+
+        // Go through the line and look for a place the size will fit
+        for (int i = start; i < line.length()-size; i++) {
+            // If the substring is valid for being replaced
+            boolean validLeftCap = Character.toString(line.charAt(i-1)).matches("[?|.]");
+            boolean validSpot = line.substring(i, i+size).matches("[#|?]{"+size+"}");
+            boolean validRightCap = Character.toString(line.charAt(i+size)).matches("[?|.]");
+            if (validLeftCap && validSpot && validRightCap) {
+                line = (new StringBuilder(line))
+                        .replace(i-1, i, ".")
+                        .replace(i, i+size, buildStringOf('-', size))
+                        .replace(i+size, i+size+1, ".")
+                        .toString();
+                System.out.println(line + " <-- " + size + " at " + i);
+
+                // Update start and exit
+                start = i+size;
+                break;
             }
         }
-        return -1;
+
+        return line;
     }
 
     /**
@@ -100,117 +124,5 @@ public class Problem12Part1 {
             return new String(array);
         }
         return "";
-    }
-
-    /**
-     * Count the number of times a given character appears in a string
-     * @return
-     */
-    public int countChar(String substring) {
-        int count = 0;
-        for (int i=0; i < substring.length(); i++) {
-            if (substring.charAt(i) == '#') {
-                count++;
-            }
-            else if (substring.charAt(i) == '.') {
-                return -1;
-            }
-        }
-        return count;
-    }
-
-    /**
-     * Find the largest value in a given array
-     * @param array
-     * @return
-     */
-    static int largest(int[] array) {
-        int max = 0;
-        for (int i=1; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-            }
-        }
-        return max;
-    }
-
-    /**
-     * Find and replace the first instance of something in a string.
-     * Meant to work when that "first instance" is the only instance.
-     * @param line
-     * @param find
-     * @return the updated line
-     */
-    private String replaceFirst(String line, String find, int tagsFound) {
-        for (int i=0; i <= line.length()-find.length(); i++) {
-            String fullSubstring = line.substring(i, i + find.length());
-            if ((countChar(fullSubstring) == tagsFound) &&
-                fullSubstring.matches("[#|?]{"+find.length()+"}") &&
-                line.substring(i+find.length(), i+find.length()+1).matches("[?|.]")) {
-                return (new StringBuilder(line))
-                        .replace(i, i+find.length(), buildStringOf('-', find.length()))
-                        .replace(i+find.length(), i+find.length()+1, ".")
-                        .toString();
-            }
-        }
-        return line;
-    }
-
-    /**
-     * Find the possible permutations in a given string
-     * @param sizes different hot spring sizes
-     * @param curSize the current hot spring being checked
-     * @param hotSprings the hot springs locations
-     * @param startingPoint starting point in the string to look for where a hotspring can be placed
-     * @return the number of permutations found
-     */
-    private int findPermutations(int[] sizes, int curSize, String hotSprings, int startingPoint) {
-        if (curSize >= sizes.length) {
-            //System.out.println(hotSprings + " end of permutation");
-            return 1;
-        } else if (sizes[curSize] == -1) {
-            return findPermutations(sizes, curSize+1, hotSprings, startingPoint);
-        }
-
-        int count = 0;
-        for (int j=startingPoint; j <= hotSprings.length()-sizes[curSize]-3; j++) {
-            String updatedHotSprings = hotSprings;
-
-            // If it's the only place the string can go
-            boolean onlyViable = countChar(hotSprings.substring(j, j+sizes[curSize])) > largest(Arrays.copyOfRange(sizes, curSize, sizes.length)) ||
-                    updatedHotSprings.substring(j, j+sizes[curSize]).matches("#{"+sizes[curSize]+"}");
-
-            // Can be placed at this spot
-            boolean hasSpaceBefore = updatedHotSprings
-                    .substring(j+-1, j)
-                    .matches("[?|.]");
-            boolean canContain = updatedHotSprings
-                    .substring(j, j+sizes[curSize])
-                    .matches("[#|?]{"+sizes[curSize]+"}");
-            boolean hasSpaceAfter = updatedHotSprings
-                            .substring(j+sizes[curSize], j+sizes[curSize]+1)
-                            .matches("[?|.]");
-
-            // If it can (or must) be placed at this spot
-            if (onlyViable || (hasSpaceBefore && canContain && hasSpaceAfter)) {
-                // Replace the section
-                updatedHotSprings = (new StringBuilder(updatedHotSprings))
-                        .replace(j, j+sizes[curSize], buildStringOf('-', sizes[curSize]))
-                        .replace(j+sizes[curSize], j+sizes[curSize]+1, ".")
-                        .toString();
-
-                // Run for the next size in the series
-                if (curSize+1 == sizes.length) {
-                    System.out.println(updatedHotSprings + " " + onlyViable + " "  + hasSpaceBefore + " " + canContain + " " + hasSpaceAfter + " " + (hotSprings.charAt(j) == '#'));
-                }
-                count += findPermutations(sizes, curSize+1, updatedHotSprings, j);
-
-                // If this was forced into this location, only allow it to exist in this location
-                if (onlyViable && (hotSprings.charAt(j) == '#')) {
-                    break;
-                }
-            }
-        }
-        return count;
     }
 }
